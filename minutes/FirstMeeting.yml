@@ -1,0 +1,24 @@
+date: September 14, 2016
+meeting_type: ta
+attendance: [<shokoors>, <jaeheunk>, <adithyan>, <alikafag>,<saisaokh>,<mes59>]
+absent: [NIL]
+excused_absences: [ N/A ]
+task_progress: [ # All group members must be included here even if they haven't made any progress since the last meeting
+  {ubit: <shokoors>, progress: N/A},
+  {ubit: <jaeheunk>, progress: N/A},
+  {ubit: <adithyan>, progress: N/A},
+  {ubit: <alikafag>, progress: N/A},
+  {ubit: <saisaokh>, progress: N/A},
+  {ubit: <mes59>, progress: N/A},
+  ]
+issues: [ Not yet  ]
+Notes:  | # Anything covered in the meeting that doesn't fit elsewhere.
+  The group going to use KIVY interpreter and will be using pyhton to create an android app.
+  We will be using python 3.4, Because KIVY has issues with Python 3.5
+  Two people server side
+Two people client Side
+Two people either
+Setup the android app prototype
+Setup the Video (Min- 30 secs and Max-2mins).
+Talked about the android studio APP that the TA(Mike) made
+Community Points
