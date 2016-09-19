@@ -14,7 +14,7 @@ task_progress: [
   
 	{ubit: <alikafag>, progress: Installed Linux as VM and Installed KIVY},
  
-	{ubit: <saisokh>, progress: Installed KIVY},
+	{ubit: <saisokh>, progress: test KIVY,and .py file pycharm on mac platform },
 	{ubit: <shokoors>, progress: Installed Ubuntu as Virtual Machine},
  
 	{ubit: <adithyan>, progress: Installed UBUNTU},
