@@ -1,0 +1,3 @@
+title=<pager>
+author=<teamxt>
+orientation=<landscape>
