@@ -8,16 +8,16 @@ absent: [n/a]
 excused_absences: [{n/a} ]
   
 task_progress: [
-	{ubit: <jaeheunk>, progress: Configured the server with php 7, found way to send name },
+	{ubit: <jaeheunk>, progress: Configured the server with php 7, found way to send parameters},
 
- 	{ubit: <mes59>, progress: Configured the server with php 7 and found a way to send name},
+ 	{ubit: <mes59>, progress: Configured the server with php 7 and found a way to send parameters},
   
-	{ubit: <alikafag>, progress: Coded the UI for the game in Android Studios},
+	{ubit: <alikafag>, progress: Coded the UI for the app in Android Studios},
  
-	{ubit: <saisokh>, progress:  Coded the UI for the game in Android Studios},
-	{ubit: <shokoors>, progress: Coded the UI for the game in Android Studios},
+	{ubit: <saisokh>, progress:  Coded the UI for the app in Android Studios},
+	{ubit: <shokoors>, progress: Coded the UI for the app in Android Studios},
  
-	{ubit: <adithyan>, progress: Coded the UI for the game in Android Studios},
+	{ubit: <adithyan>, progress: Coded the UI for the app in Android Studios},
 	]
 
 issues: [ 
