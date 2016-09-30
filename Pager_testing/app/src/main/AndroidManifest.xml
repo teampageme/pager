@@ -8,15 +8,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".LogIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".paging" android:screenOrientation="landscape"/>
-        <activity android:name=".SignUp"></activity>
+        <activity
+            android:name=".Paging"
+            android:screenOrientation="landscape" />
+        <activity android:name=".SignUp" />
+        <activity android:name=".Compose"></activity>
     </application>
 
 </manifest>
