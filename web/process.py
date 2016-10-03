@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# Needs number.txt to run
 import sys
 
 def main():
