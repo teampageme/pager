@@ -7,13 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class Paging extends AppCompatActivity {
-
+public class Paging extends AppCompatActivity
+{
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paging);
-
         //Page button action Listener
         ImageButton Page = (ImageButton)this.findViewById(R.id.record);
         Page.setOnClickListener(new Button.OnClickListener()
@@ -24,7 +24,5 @@ public class Paging extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
 }

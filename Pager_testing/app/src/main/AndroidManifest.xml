@@ -19,7 +19,11 @@
             android:name=".Paging"
             android:screenOrientation="landscape" />
         <activity android:name=".SignUp" />
-        <activity android:name=".Compose"></activity>
+        <activity android:name=".Compose" />
+        <activity
+            android:name=".Settings"
+            android:label="@string/title_activity_settings" />
+        <activity android:name=".Msgs"></activity>
     </application>
 
 </manifest>
