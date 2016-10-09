@@ -17,7 +17,6 @@ public class LogIn extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
 	
         errorText = (TextView)findViewById(R.id.error);
-
         username = (EditText)findViewById(R.id.username);
 
         password = (EditText)findViewById(R.id.password);
@@ -27,7 +26,7 @@ public class LogIn extends AppCompatActivity {
 
 
 
-    public void signIn(){
+    public void signIn(View v){
 
         boolean account = true;
         //check from server if account exists
@@ -57,7 +56,7 @@ public class LogIn extends AppCompatActivity {
 
     }
 
-public void signUp(){
+public void signUp(View v){
 	setContentView(R.layout.activity_sign_up);
 	}
 
