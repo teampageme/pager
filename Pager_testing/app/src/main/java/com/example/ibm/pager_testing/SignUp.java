@@ -26,7 +26,7 @@ public class SignUp extends AppCompatActivity {
     public void generate(){
         //generate a random 9 digit pin
         Random rnd = new Random();
-        pin = rnd.nextInt(999999999) + 111111111;
+        pin = rnd.nextInt(999999999) + 100000000;
 
         show.setText("\t Your Username is: " + user + "\n \tyour PIN is:" + pin + "\n");
     }
