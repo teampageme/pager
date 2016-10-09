@@ -23,7 +23,7 @@ public class SignUp extends AppCompatActivity {
 
     }
 
-    public void generate(){
+    public void generate(View v){
         //generate a random 9 digit pin
         Random rnd = new Random();
         pin = rnd.nextInt(999999999) + 100000000;
@@ -31,7 +31,7 @@ public class SignUp extends AppCompatActivity {
         show.setText("\t Your Username is: " + user + "\n \tyour PIN is:" + pin + "\n");
     }
 
-    public void signup(){
+    public void signup(View v){
         //add to database
 
     }
