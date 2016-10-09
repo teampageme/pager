@@ -27,13 +27,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-public void in(){
+public void in(View v){
 setContentView(R.layout.activity_log_in)
 
 
 }
 
-public void up(){
+public void up(View v){
 setContentView(R.layout.activity_sign_up)
 
 
