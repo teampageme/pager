@@ -7,22 +7,46 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class Paging extends AppCompatActivity
+
+public class Compose extends AppCompatActivity
 {
+    EditText number;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paging);
-        //Page button action Listener
-        ImageButton Page = (ImageButton)this.findViewById(R.id.record);
-        Page.setOnClickListener(new Button.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(Paging.this, Compose.class);
-                startActivity(intent);
-            }
-        });
+        number = (EditText)findViewById(R.id.numberType);
+        
     }
+    
+    public void numup(View v){
+    int pin = Integer.parseInt(number.getText() + "");
+    temp = pin + 1;
+    
+    number.setText(temp + "");
+    
+    }
+    
+    public void numdown(View v){
+    int pin = Integer.parseInt(number.getText() + "");
+    temp = pin - 1;
+    
+    number.setText(temp + "");
+    
+    }
+    
+    public void back(View v){
+    setContentView(R.layout.choosePIN)
+    }
+
+    public void front(View v){
+    setContentView(R.layout.ReadMessages)
+    }
+
+    public void send(View v){
+    send the http request to server
+    }
+
+
 }

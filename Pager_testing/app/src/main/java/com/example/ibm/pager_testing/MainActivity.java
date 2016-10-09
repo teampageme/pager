@@ -13,37 +13,30 @@ import android.widget.ImageButton;
 
 
 public class MainActivity extends AppCompatActivity {
+	Button logIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        Button logIn = (Button)this.findViewById(R.id.Log_in);
-        logIn.setOnClickListener(new Button.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(MainActivity.this, paging.class);
-                startActivity(intent);
-
-            }
-        });
-
-
-        Button signUp = (Button)this.findViewById(R.id.Sign_up);
-        signUp.setOnClickListener(new Button.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(MainActivity.this, SignUp.class);
-                startActivity(intent);
-
-            }
-        });
+	logIn = (Button)this.findViewById(R.id.Log_in);
+	Button signUp = (Button)this.findViewById(R.id.Sign_up);	
 
 
 
     }
+
+
+public void in(View v){
+setContentView(R.layout.activity_log_in);
+
+
+}
+
+public void up(View v){
+setContentView(R.layout.activity_sign_up);
+
+
+}
+
 }
