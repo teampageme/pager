@@ -1,0 +1,19 @@
+date: September 28, 2016
+meeting_type: ta
+attendance: [<shokoors>, <jaeheunk>, <adithyan>, <alikafag>,<saisaokh>,<mes59>]
+absent: [NIL]
+excused_absences: [ N/A ]
+task_progress: [ # All group members must be included here even if they haven't made any progress since the last meeting
+  {ubit: <shokoors>, progress: Coded the UI for the app },
+  {ubit: <jaeheunk>, progress: Connected to the server},
+  {ubit: <adithyan>, progress:Coded the UI for the app},
+  {ubit: <alikafag>, progress: Coded the UI for the app},
+  {ubit: <saisaokh>, progress: Coded the UI for the app},
+  {ubit: <mes59>, progress: Connected to the server and Database},
+  ]
+issues: [ None for now ]
+Notes:  | 
+Committing/push to Github after every successful change
+Talked about the progress of the project
+Talked about the future requirements and changes that each sub-group will be doing.
+ 
