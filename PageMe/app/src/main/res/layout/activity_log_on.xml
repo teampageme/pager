@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.ibm.pager__9_10.com.example.ibm.PageMe.log_on">
+    tools:context="com.example.ibm.PageMe.log_on">
 
 
     <TextView
@@ -16,26 +16,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/error" />
 
-
-    <Button
-        android:text="Sign up"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/redirect_to_sign_up"
-        android:onClick="signUp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="131dp" />
-
-    <Button
-        android:text="Log in"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/takes_to_pager"
-        android:onClick="signIn"
-        android:layout_below="@+id/pin"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="63dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -56,6 +36,35 @@
         android:id="@+id/username"
         android:hint="Enter your userID"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Sign up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/redirect_to_sign_up"
+        android:onClick="signUp"
+        android:layout_below="@+id/takes_to_pager"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Log in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/takes_to_pager"
+        android:onClick="signIn"
+        android:layout_marginTop="57dp"
+        android:layout_below="@+id/pin"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="@string/hyperlink"
+        android:id="@+id/hyperlink"
+        android:autoLink="web"
+        android:layout_below="@+id/pin"
+        android:layout_alignParentStart="true">
+    </TextView>
 
 
 </RelativeLayout>

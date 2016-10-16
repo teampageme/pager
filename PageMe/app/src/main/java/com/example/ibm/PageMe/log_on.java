@@ -35,13 +35,13 @@ public class log_on extends AppCompatActivity
                 {
                     boolean account = true;
                     //check from server if account exists
-                    Intent intent = new Intent(log_on.this, page.class);
                     if (account)
                     {
-                        if(username == pin)
+                        if(true)//username == pin //its like that just for testing purposes
                         {
                             //change this
                             //setContentView(R.layout.activity_page);
+                            Intent intent = new Intent(log_on.this, page.class);
                             startActivity(intent);
                         }
                         else

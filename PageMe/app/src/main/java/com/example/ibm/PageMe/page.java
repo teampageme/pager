@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.*;
 import android.widget.*;
 import android.content.*;
-
 import com.example.ibm.pager__9_10.R;
 
 public class page extends AppCompatActivity
@@ -52,8 +51,8 @@ public class page extends AppCompatActivity
                     message.setText(pin + "");
                 }
             });
-            int pin = Integer.parseInt(message.getText() + "");
-            message.setText(pin + "");
+            //int pin = Integer.parseInt(message.getText() + "");
+            //message.setText(pin + "");
 
             Left.setOnClickListener(new View.OnClickListener()
             {
@@ -67,6 +66,16 @@ public class page extends AppCompatActivity
             });
 
             Right.setOnClickListener(new View.OnClickListener()
+            {
+                public void onClick(View v)
+                {
+                    Intent intent = new Intent(page.this, compose.class);
+                    startActivity(intent);
+                    /*int pin = Integer.parseInt(message.getText() + "");
+                    message.setText(pin + "");*/
+                }
+            });
+            Record.setOnClickListener(new View.OnClickListener()
             {
                 public void onClick(View v)
                 {

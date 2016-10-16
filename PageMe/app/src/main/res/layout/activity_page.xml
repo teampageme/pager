@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.ibm.pager__9_10.com.example.ibm.PageMe.page">
+    tools:context="com.example.ibm.PageMe.page">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -89,12 +89,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/two"
         android:weightSum="1"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="22dp">
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <EditText
-            android:layout_width="455dp"
-            android:layout_height="151dp"
+            android:layout_width="414dp"
+            android:layout_height="193dp"
             android:maxLength="9"
             android:inputType="number"
             android:ems="10"

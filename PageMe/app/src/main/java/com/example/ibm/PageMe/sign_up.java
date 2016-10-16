@@ -6,7 +6,6 @@ import android.widget.*;
 import java.util.*;
 import android.view.*;
 import android.content.*;
-
 import com.example.ibm.pager__9_10.R;
 
 public class sign_up extends AppCompatActivity
