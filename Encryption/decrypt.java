@@ -7,7 +7,7 @@ public class decrypt
     {
 
         String encrypted = "Brbrs/4wqWkR78rRrB8jvT/GaPMsd5fVLS14j6Ex9DM=";
-        //String encrypted = args[0]; //use when you are doing executing the program on the server to use the commande line
+        //String encrypted = args[0]; //use when you are executing the program on the server using the commande line
         String pass = "fifa17";
 
         StandardPBEStringEncryptor cryptor = new StandardPBEStringEncryptor();
