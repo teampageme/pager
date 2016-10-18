@@ -1,3 +1,5 @@
+Encryption algorithm  used is SHA-256 with AES 256BIT
+
 compiling: javac -cp jasypt-1.9.1.jar:bcprov-jdk15on-155.jar: x.java
 run: java -cp jasypt-1.9.1.jar:bcprov-jdk15on-155.jar: x
 

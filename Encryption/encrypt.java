@@ -13,7 +13,7 @@ public class encrypt
         StandardPBEStringEncryptor cryptor = new StandardPBEStringEncryptor();
         cryptor.setProvider(new BouncyCastleProvider());
 
-        cryptor.setAlgorithm("PBEWITHSHA256AND128BITAES-CBC-BC");
+        cryptor.setAlgorithm("PBEWITHSHA256AND256BITAES-CBC-BC");
         cryptor.setPassword(pass);
 
         String encrypted = cryptor.encrypt(msg);
