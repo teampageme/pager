@@ -6,7 +6,8 @@ public class encrypt
     public static void main(String[] args)
     {
 
-        String msg     = "hello world";
+	String msg = args[0];	
+	//String msg  = "hello world";
         String pass = "fifa17";
 
         StandardPBEStringEncryptor cryptor = new StandardPBEStringEncryptor();
@@ -16,12 +17,10 @@ public class encrypt
         cryptor.setPassword(pass);
 
         String encrypted = cryptor.encrypt(msg);
-        String decrpted = cryptor.decrypt((encrypted));
 
         System.out.println(msg);
         System.out.println(encrypted);
-        System.out.println(decrpted);
-
 
     }
 }
+
