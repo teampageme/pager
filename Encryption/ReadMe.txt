@@ -1,12 +1,10 @@
-Encryption algorithm  used is SHA-256 with AES 256BIT
+This folder contains a python program that encrypts and decrypts msgs(Now it is just for testing purposes).
 
-compiling: javac -cp jasypt-1.9.1.jar:bcprov-jdk15on-155.jar: x.java
-run: java -cp jasypt-1.9.1.jar:bcprov-jdk15on-155.jar: x
+We used Nuitka to compile our python code to make it a lot faster when executing the python code on the server.
 
-Programs for encypting or decrypting can be used command line arguments or hardcoding the input 
+Basically Nuitka translates python into a C++ program or into something called Cpython.
 
-Regarding php code:
-Enc.php compiles and runs the encrypt.java file and command line arguments can be used. 
-Dec.php compiles and runs the decrypt.java file and command line arguments can be used.
+For compiling your python code: "nuitka x.py"
+For running you python executable: "./x.exe"
 
-You can remove the compile commands after it has been executed once, in case you want have faster exeecution for the php script. 
+As for the encryption part in python, we used the cryptography library which encrypts string using AES algorithm and with nuitka the speed of execution is efficent for what we want to achieve. 
