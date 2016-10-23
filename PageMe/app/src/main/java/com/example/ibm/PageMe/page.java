@@ -10,7 +10,7 @@ import com.example.ibm.pager__9_10.R;
 public class page extends AppCompatActivity
 {
 
-    EditText message;
+    EditText    message;
     ImageButton Left;
     ImageButton Right;
     ImageButton Up;

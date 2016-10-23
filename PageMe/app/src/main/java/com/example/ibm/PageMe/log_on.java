@@ -41,7 +41,7 @@ public class log_on extends AppCompatActivity
                         {
                             //change this
                             //setContentView(R.layout.activity_page);
-                            Intent intent = new Intent(log_on.this, page.class);
+                            Intent intent = new Intent(log_on.this, encryption.class);
                             startActivity(intent);
                         }
                         else
