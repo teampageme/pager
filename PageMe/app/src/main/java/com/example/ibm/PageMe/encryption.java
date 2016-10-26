@@ -22,7 +22,7 @@ public class encryption extends AppCompatActivity
         final TextView decrpyt = (TextView)findViewById(R.id.vw2);
         final EditText password = (EditText)findViewById(R.id.pass);
 
-        enc.setOnClickListener(new View.OnClickListener()
+        enc.setOnClickListener( new View.OnClickListener()
         {
             public void onClick(View v)
             {

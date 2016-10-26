@@ -17,22 +17,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name="com.example.ibm.PageMe.log_on"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="com.example.ibm.PageMe.sign_up"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="com.example.ibm.PageMe.page"
+            android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape" />
+
         <activity
             android:name="com.example.ibm.PageMe.compose"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="com.example.ibm.PageMe.done"
             android:screenOrientation="portrait" />
-        <activity android:name=".encryption" />
+
         <activity android:name="com.example.ibm.PageMe.encryption"></activity>
     </application>
 

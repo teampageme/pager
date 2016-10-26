@@ -1,5 +1,6 @@
 package com.example.ibm.PageMe;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ public class compose extends AppCompatActivity
 {
     EditText recip;
     Button sd;
+    Button codeBook;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -20,13 +22,12 @@ public class compose extends AppCompatActivity
 
         recip = (EditText)findViewById(R.id.recipient);
         sd = (Button)findViewById(R.id.sending);
+        codeBook = (Button)findViewById(R.id.codeBook);
 
         sd.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
-                /*Intent intent = new Intent(log_on.this, sign_up.class);
-                startActivity(intent);*/
                 if(recip.getText() != null)
                 {
                     recip.setText("Message sent");
@@ -34,5 +35,16 @@ public class compose extends AppCompatActivity
                 }
             }
         });
+
+        codeBook.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                //should redirect user to the his codebook activity. To be done later.
+                /*Intent intent = new Intent(homepage.this, log_on.class);
+                startActivity(intent);*/
+            }
+        });
+
     }
 }

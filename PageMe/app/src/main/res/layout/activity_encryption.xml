@@ -10,26 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.ibm.PageMe.encryption">
 
-    <Button
-        android:text="Decrypt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="53dp"
-        android:id="@+id/bn2"
-        android:layout_alignBaseline="@+id/bn1"
-        android:layout_alignBottom="@+id/bn1"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:text="Encrypt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/bn1"
-        android:layout_marginStart="41dp"
-        android:layout_marginBottom="26dp"
-        android:layout_above="@+id/vw1"
-        android:layout_alignParentStart="true" />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -39,23 +19,41 @@
         android:layout_toEndOf="@+id/vw1"
         android:layout_alignStart="@+id/bn2" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:id="@+id/vw1"
-        android:layout_marginEnd="53dp"
-        android:layout_centerVertical="true"
-        android:layout_toStartOf="@+id/bn2" />
-
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:ems="10"
         android:id="@+id/pass"
         android:layout_marginBottom="47dp"
         android:hint="Type your Password"
-        android:layout_above="@+id/bn2"
-        android:layout_alignStart="@+id/bn1" />
+        android:layout_above="@+id/bn2" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/vw1"
+        android:layout_centerVertical="true"
+        android:layout_alignEnd="@+id/bn1" />
+
+    <Button
+        android:text="Encrypt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bn1"
+        android:layout_marginBottom="26dp"
+        android:layout_above="@+id/vw1"
+        android:layout_toStartOf="@+id/bn2"
+        android:layout_marginEnd="43dp" />
+
+    <Button
+        android:text="Decrypt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="65dp"
+        android:id="@+id/bn2"
+        android:layout_alignBaseline="@+id/bn1"
+        android:layout_alignBottom="@+id/bn1"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

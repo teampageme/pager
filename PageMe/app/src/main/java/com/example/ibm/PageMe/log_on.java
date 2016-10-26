@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.*;
 import android.content.*;
-
 import com.example.ibm.pager__9_10.R;
 
 

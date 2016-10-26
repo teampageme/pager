@@ -35,10 +35,10 @@ public class AES
     {
         Key key = generateKey();
         Cipher c = Cipher.getInstance(ALGO);
-        c.init(Cipher.ENCRYPT_MODE, key);
+        c.init(Cipher.ENCRYPT_MODE, key); //Selecting encryption mode
         byte[] encVal = c.doFinal(Data.getBytes());
         //String encryptedValue = DatatypeConverter.printBase64Binary(encVal);
-        String encryptedValue = android.util.Base64.encodeToString(encVal, 16);
+        String encryptedValue = android.util.Base64.encodeToString(encVal, 16); //replacement code for xml methods because they don't work on android.
         return encryptedValue;
     }
 
@@ -46,9 +46,8 @@ public class AES
     {
         Key key = generateKey();
         Cipher c = Cipher.getInstance(ALGO);
-        c.init(Cipher.DECRYPT_MODE, key);
-        byte[] decordedValue = android.util.Base64.decode(encryptedData, 16);
-
+        c.init(Cipher.DECRYPT_MODE, key); //selecting decryption mode
+        byte[] decordedValue = android.util.Base64.decode(encryptedData, 16); //replacement code for xml methods because they don't work on android.
         byte[] decValue = c.doFinal(decordedValue);
         String decryptedValue = new String(decValue);
         return decryptedValue;
