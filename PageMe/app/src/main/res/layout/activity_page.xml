@@ -94,5 +94,15 @@
         android:layout_marginBottom="25dp"
         android:id="@+id/tasgyl" />
 
+    <ImageButton
+        app2:srcCompat="@drawable/setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tasgyl"
+        android:layout_alignEnd="@+id/numberPicker9"
+        android:id="@+id/setting"
+        android:layout_alignTop="@+id/tasgyl"
+        android:layout_toEndOf="@+id/numberPicker8" />
+
 
 </RelativeLayout>

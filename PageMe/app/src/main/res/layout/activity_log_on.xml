@@ -11,60 +11,73 @@
     tools:context="com.example.ibm.PageMe.log_on">
 
 
-    <TextView
+    <Button
+        android:text="Create New Account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/error" />
-
+        android:id="@+id/SingingUP"
+        android:onClick="signUp"
+        android:layout_marginBottom="54dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/pin"
+        android:id="@+id/nineBit"
         android:hint="Enter you 9-bit #"
-        android:layout_below="@+id/username"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/errorNum"
+        android:layout_below="@+id/nineBit"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="54dp" />
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/username"
-        android:hint="Enter your userID"
-        android:layout_alignParentStart="true" />
+        android:id="@+id/pass"
+        android:hint="Enter your password"
+        android:layout_below="@+id/errorNum"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="53dp" />
 
-    <Button
-        android:text="Sign up"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/redirect_to_sign_up"
-        android:onClick="signUp"
-        android:layout_below="@+id/takes_to_pager"
-        android:layout_alignParentStart="true" />
+        android:id="@+id/errorPass"
+        android:layout_below="@+id/pass"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="13dp" />
 
     <Button
         android:text="Log in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/takes_to_pager"
+        android:id="@+id/SingingIN"
         android:onClick="signIn"
-        android:layout_marginTop="57dp"
-        android:layout_below="@+id/pin"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/errorPass"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="40dp" />
 
     <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:text="@string/hyperlink"
-        android:id="@+id/hyperlink"
-        android:autoLink="web"
-        android:layout_below="@+id/pin"
-        android:layout_alignParentStart="true">
-    </TextView>
+        android:text="OR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textSize="24sp"
+        android:layout_marginBottom="16dp"
+        android:layout_above="@+id/SingingUP"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

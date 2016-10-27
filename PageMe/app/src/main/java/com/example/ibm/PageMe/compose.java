@@ -8,11 +8,13 @@ import android.widget.Button;
 import android.widget.*;
 import com.example.ibm.pager__9_10.R;
 
+//connect the Codebook activity to this activity.
+
 public class compose extends AppCompatActivity
 {
-    EditText recip;
-    Button sd;
-    Button codeBook;
+    private EditText recip;
+    private Button   sd;
+    private Button   codeBook;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -20,8 +22,8 @@ public class compose extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compose);
 
-        recip = (EditText)findViewById(R.id.recipient);
-        sd = (Button)findViewById(R.id.sending);
+        recip    = (EditText)findViewById(R.id.recipient);
+        sd       = (Button)findViewById(R.id.sending);
         codeBook = (Button)findViewById(R.id.codeBook);
 
         sd.setOnClickListener(new View.OnClickListener()
@@ -31,7 +33,6 @@ public class compose extends AppCompatActivity
                 if(recip.getText() != null)
                 {
                     recip.setText("Message sent");
-
                 }
             }
         });
@@ -40,9 +41,7 @@ public class compose extends AppCompatActivity
         {
             public void onClick(View v)
             {
-                //should redirect user to the his codebook activity. To be done later.
-                /*Intent intent = new Intent(homepage.this, log_on.class);
-                startActivity(intent);*/
+                //should redirect user to the his codebook activityu, using intents. To be implemented later.
             }
         });
 

@@ -8,13 +8,12 @@ import android.widget.*;
 import android.content.*;
 import com.example.ibm.pager__9_10.R;
 
-
 public class log_on extends AppCompatActivity
 {
-        TextView errorText;
-        EditText username, pin;
-        String errormsg = "Incorrect Username/Password, try again";
-        Button logIn, signUp;
+        private TextView errorText;
+        private EditText num, pass;
+        private String   errormsg = "Incorrect Username/Password, try again";
+        private Button   logIn, create;
 
         @Override
         protected void onCreate(Bundle savedInstanceState)
@@ -22,40 +21,46 @@ public class log_on extends AppCompatActivity
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_log_on);
 
-            errorText = (TextView)findViewById(R.id.error);
-            username = (EditText)findViewById(R.id.username);
-            pin = (EditText)findViewById(R.id.pin);
-            logIn = (Button)findViewById(R.id.takes_to_pager);
-            signUp = (Button)findViewById(R.id.redirect_to_sign_up);
+            errorText = (TextView)findViewById(R.id.errorNum);
+            num       = (EditText)findViewById(R.id.nineBit);
+            pass      = (EditText)findViewById(R.id.pass);
+            logIn     = (Button)findViewById(R.id.SingingIN);
+            create    = (Button)findViewById(R.id.SingingUP);
 
             logIn.setOnClickListener(new View.OnClickListener()
             {
                 public void onClick(View v)
                 {
                     boolean account = true;
-                    //check from server if account exists
-                    if (account)
+
+                    if (account)//check from server if account exists
                     {
-                        if(true)//username == pin //its like that just for testing purposes
+                        //Checks if the 9 bit number does exist in the database, else throw and error
+                        if(true)//if (num exists) //its like that just for testing purposes
                         {
                             //change this
                             //setContentView(R.layout.activity_page);
-                            Intent intent = new Intent(log_on.this, encryption.class);
-                            startActivity(intent);
+                            //Intent intent = new Intent(log_on.this, encryption.class);
+                            //startActivity(intent);
                         }
                         else
                         {
                             errorText.setText(errormsg);
                         }
                     }
-                    /*else
+
+                    if(account) //check from the server that the password matches the 9Bit number, then user is redirected to the pager screen
+                    {   //else throw an error
+
+                    }
+                    else
                     {
-                        setContentView(R.layout.activity_sign_up);
-                    }*/
+                        errorText.setText(errormsg);
+                    }
                 }
             });
 
-            signUp.setOnClickListener(new View.OnClickListener()
+            create.setOnClickListener(new View.OnClickListener()
             {
                 public void onClick(View v)
                 {

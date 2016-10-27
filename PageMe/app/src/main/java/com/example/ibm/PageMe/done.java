@@ -11,7 +11,7 @@ public class done extends AppCompatActivity
 {
 
     private TextView input, accomplish;
-    private String num;
+    private String   num;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

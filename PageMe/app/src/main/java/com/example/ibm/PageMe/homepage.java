@@ -9,8 +9,8 @@ import com.example.ibm.pager__9_10.R;
 
 public class homepage extends AppCompatActivity
 {
-    Button login;
-    Button signUp;
+    private Button login;
+    private Button signUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -18,7 +18,7 @@ public class homepage extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        login = (Button)findViewById(R.id.sign_in);
+        login  = (Button)findViewById(R.id.sign_in);
         signUp = (Button)findViewById(R.id.sign_up);
 
         login.setOnClickListener(new View.OnClickListener()

@@ -10,12 +10,16 @@ import android.content.*;
 import java.lang.Math;
 import com.example.ibm.pager__9_10.R;
 
+
+//The UI for this activity will be polished later.
+
+
 public class page extends AppCompatActivity
 {
-    int num1, num2, num3, num4, num5, num6, num7, num8, num9;
+    private int          num1,       num2,       num3,       num4,       num5,       num6,       num7,       num8,       num9;
     private NumberPicker numPicker1, numPicker2, numPicker3, numPicker4, numPicker5, numPicker6, numPicker7, numPicker8, numPicker9;
-    private TextView tv;
-    private ImageButton record;
+    private TextView     tv;
+    private ImageButton  record, settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -80,7 +84,6 @@ public class page extends AppCompatActivity
                 tv.setText(String.valueOf(num1 + num2 + num3 + num4 + num5 + num6 + num7 + num8 + num9));
             }
         });
-
 
         numPicker2.setOnValueChangedListener(new NumberPicker.OnValueChangeListener()
         {
@@ -155,6 +158,7 @@ public class page extends AppCompatActivity
         });
 
         record = (ImageButton) findViewById(R.id.tasgyl);
+        settings = (ImageButton) findViewById(R.id.setting);
 
         record.setOnClickListener(new View.OnClickListener()
         {
@@ -165,5 +169,15 @@ public class page extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
+        settings.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(page.this, settings.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
