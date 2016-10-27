@@ -33,6 +33,7 @@ public class log_on extends AppCompatActivity
                 {
                     boolean account = true;
 
+
                     if (account)//check from server if account exists
                     {
                         //Checks if the 9 bit number does exist in the database, else throw and error
