@@ -14,6 +14,6 @@ else
   $fh = fopen($myFile, 'w');
 } 
 fputcsv($fh, $line);
-echo 'SENT'
+echo 'SENT';
 fclose($fh);
 ?>
