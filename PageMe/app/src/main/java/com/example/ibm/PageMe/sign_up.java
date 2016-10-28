@@ -13,20 +13,18 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import android.view.*;
-import android.content.*;
 import com.example.ibm.pager__9_10.R;
-
-import static com.example.ibm.pager__9_10.R.id.textView;
 
 public class sign_up extends AppCompatActivity
 {
+    //Predeclarations
     private TextView nineBit, nworked, pworked, eworked;
     private EditText pass, email;
     private int      pin;
     private Button   generate, finish, checkP, checkE;
-    //private String   input      = "123456789";
-    String id, password, key;
-    String   server_url = "http://45.62.252.22/testCreateUser.php?id=" + id + "&password="+ password +"&key=" + key;
+    private String   id, password, key, checkID;
+    private String   createUser, checkExisitngID;
+    private String chkIdResponse, signUpResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,6 +32,7 @@ public class sign_up extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        //Declarations
         pass     = (EditText)findViewById(R.id.ps);
         email    = (EditText)findViewById(R.id.EL);
         nineBit  = (TextView)findViewById(R.id.st);
@@ -53,11 +52,26 @@ public class sign_up extends AppCompatActivity
                 //needs to check if the generated number is not already been used in the database.
                 //after generating a valid number then you can display the 9-bit # to the screen and later send it as an e-mail
                 //if valid then use TEXTVIEW "nworked" to say it worked, else then make it say try a different one.
+                generate.setClickable(false); //disables generate button after it has been pressed.
                 Random rnd = new Random();
                 pin = rnd.nextInt(999999999) + 100000000;
-                String test = pass.getText().toString();
-                nineBit.setText(test + "" + pin + "");
-
+                checkID = String.valueOf(pin);
+                checkExisitngID = "http://45.62.252.22/testCheckForExistingID.php?id=" + checkID;
+                if(checkExisting(checkExisitngID) == "Error checking ID")
+                {
+                    nineBit.setText("Error checking ID!");
+                }
+                else
+                {
+                    while(checkExisting(checkExisitngID) == "EXISTS" && checkExisting(checkExisitngID) != "DOES_NOT_EXIST" && checkExisting(checkExisitngID) != "Error checking ID")
+                    {
+                        pin = rnd.nextInt(999999999) + 100000000;
+                        checkID = String.valueOf(pin);
+                        checkExisitngID = "http://45.62.252.22/testCheckForExistingID.php?id=" + checkID;
+                    }
+                    nineBit.setText(checkID);
+                    nworked.setText(("worked"));
+                }
             }
         });
 
@@ -71,6 +85,7 @@ public class sign_up extends AppCompatActivity
                 if(isValidPassword(pass.getText().toString()))
                 {
                     pworked.setText("worked");
+                    checkP.setClickable(false); //disables checkP button after it has been pressed.
                 }
                 else
                 {
@@ -89,6 +104,7 @@ public class sign_up extends AppCompatActivity
                 if(isValidEmail(email.getText().toString()))
                 {
                     eworked.setText("worked");
+                    checkE.setClickable(false); //disables checkE button after it has been pressed.
                 }
                 else
                 {
@@ -97,51 +113,40 @@ public class sign_up extends AppCompatActivity
             }
         });
 
+        //Sign up procedure
         finish.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                final RequestQueue requestQueue = Volley.newRequestQueue(sign_up.this);
-
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, server_url,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                nworked.setText(response);
-                                requestQueue.stop();
-                                Intent intent = new Intent(sign_up.this, page.class);
-                                startActivity(intent);
-                            }
-                        }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error)
-                    {
-                        nworked.setText("a7a....");
-                        error.printStackTrace();
-                        requestQueue.stop();
-                    }
-                });
-                requestQueue.add(stringRequest);
+                if(nworked.getText() == "worked" && pworked.getText() == "worked" && eworked.getText() == "worked")
+                {
+                    id = nineBit.getText().toString();
+                    password = pass.getText().toString();
+                    key = "0"; //temporary.
+                    /*
+                        Should have another field for inserting email address in the database for email confirmation later on.
+                     */
+                    createUser = "http://45.62.252.22/testCreateUser.php?id=" + id + "&password="+ password +"&key=" + key;
+                    signUp(createUser);
+                }
             }
-/*
-            Intent intent = new Intent(sign_up.this, page.class);
-            startActivity(intent);
-*/
-
         });
+
     }
 
+
+    //functions
     /*
+        Password regex pattern.
         Inspired from stackoverflow:http://stackoverflow.com/questions/22348212/android-check-if-an-email-address-is-valid-or-not
-     */
+    */
     public boolean isValidPassword(final String password)
     {
         Pattern pattern;
         Matcher matcher;
 
-        final String PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[@#$%]).{5,15})\n";
+        final String PASSWORD_PATTERN =  "^.{4,20}$"; //pass between 4 and 20 chars, with no other restrictions.
 
         pattern = Pattern.compile(PASSWORD_PATTERN);
         matcher = pattern.matcher(password);
@@ -149,8 +154,62 @@ public class sign_up extends AppCompatActivity
         return matcher.matches();
     }
 
+    /*
+        Checking whether entered email is valid(not existing.
+    */
     public static boolean isValidEmail(String target)
     {
-        return target != null && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+        return target != null && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches(); //checks whether email is valid or not. But it doens't check whether email is exisitng or not(confirmation link in the entered email).
     }
+
+    /*
+        Function for checking existing IDs.
+    */
+    public String checkExisting(String checking)
+    {
+        final RequestQueue requestQueue = Volley.newRequestQueue(sign_up.this);
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, checking,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            chkIdResponse = response;
+                        }
+                    }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    chkIdResponse = "Error checking ID";
+                    error.printStackTrace();
+                    requestQueue.stop();
+                }
+        });
+        requestQueue.add(stringRequest);
+        return chkIdResponse;
+    }
+
+    /*
+        Function for signing up users as an entry in the database.
+    */
+    public String signUp(String credentials)
+    {
+        final RequestQueue requestQueue = Volley.newRequestQueue(sign_up.this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, credentials,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        signUpResponse = response;
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                signUpResponse = "Error checking ID";
+                error.printStackTrace();
+                requestQueue.stop();
+            }
+        });
+        requestQueue.add(stringRequest);
+        return signUpResponse;
+    }
+
 }
