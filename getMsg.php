@@ -1,6 +1,6 @@
 <?php
 $userID = htmlspecialchars($_GET["userNumber"]);
-$myFile = '/var/www/html/'. $userID . ".csv";
+$myFile = '/var/www/data/'. $userID . ".csv";
 if (file_exists($myFile)) 
 {
      $fh = fopen($myFile, 'r');
@@ -15,7 +15,7 @@ if (file_exists($myFile))
 }
 else
 {
-    echo 'ERROR 001';
+    echo 'NOMSG';
 }
 
 ?>
