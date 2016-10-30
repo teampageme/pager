@@ -15,12 +15,12 @@ if ($conn->connect_error) {
 
 
 /* Read paramter inputs */
-$userID = $_GET["id"];
+$ID = $_GET["id"];
 
 //echo ($userID . "\n" . $pin . "\n");
 
 /* SQL query to select all rows where id are equal */
-$sql = "SELECT userID FROM testuserdata WHERE userID = $userID LIMIT 1";
+$sql = "SELECT ID FROM testUserTable WHERE ID = $ID LIMIT 1";
 $result = $conn->query($sql);
 
 //$row = $result->fetch_assoc();

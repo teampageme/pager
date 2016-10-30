@@ -14,13 +14,13 @@ if ($conn->connect_error) {
 }
 
 /* Get input paramters */
-$userID = $_GET["id"];
-$pin = $_GET["pin"];
+$ID = $_GET["id"];
+$password = $_GET["password"];
 
 //echo ($userID . "\n" . $pin . "\n");
 
 /* SQL query to check if id and pin are correct */
-$sql = "SELECT userID, pin FROM testuserdata WHERE userID = $userID AND pin = $pin LIMIT 1";
+$sql = "SELECT ID, password FROM testUserTable WHERE ID = $ID AND password = $password LIMIT 1";
 $result = $conn->query($sql);
 
 //$row = $result->fetch_assoc();

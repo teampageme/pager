@@ -15,13 +15,14 @@ if ($conn->connect_error) {
 }
 
 /* Get input parameters */
-$userID = $_GET["id"];
-$pin = $_GET["pin"];
+$ID = $_GET["id"];
+$password = $_GET["password"];
+$key = $_GET["key"];
 
 //echo ($userID . "\n" . $pin . "\n");
 
 /* SQL query to get row where id is equal */
-$sql = "SELECT userID FROM testuserdata WHERE userID = $userID LIMIT 1";
+$sql = "SELECT ID FROM testUserTable WHERE ID = $ID LIMIT 1";
 $result = $conn->query($sql);
 
 //$row = $result->fetch_assoc();
@@ -30,8 +31,8 @@ $result = $conn->query($sql);
 /* ID does not exist */
 if ($result->num_rows == 0) {
         /* Create Account */
-	$sql = "INSERT INTO testuserdata (userID, pin, reg_date)
-	VALUES ($userID, $pin, CURRENT_TIMESTAMP)";
+	$sql = "INSERT INTO testUserTable (ID, password, hashKey, reg_date)
+	VALUES ($ID, $password, $key, CURRENT_TIMESTAMP)";
 
 	/* Check to see if query was successful */
 	if ($conn->query($sql) === TRUE) {
