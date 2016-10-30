@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/nineBit"
+        android:id="@+id/ninBit"
         android:hint="Enter you 9-bit #"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/errorNum"
-        android:layout_below="@+id/nineBit"
+        android:layout_below="@+id/ninBit"
         android:layout_alignParentStart="true"
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp" />
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/pass"
+        android:id="@+id/ser"
         android:hint="Enter your password"
         android:layout_below="@+id/errorNum"
         android:layout_alignParentStart="true"
@@ -55,7 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/errorPass"
-        android:layout_below="@+id/pass"
+        android:layout_below="@+id/ser"
         android:layout_alignParentStart="true"
         android:layout_marginTop="13dp" />
 
@@ -73,7 +73,7 @@
         android:text="OR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2"
+        android:id="@+id/OR"
         android:textSize="24sp"
         android:layout_marginBottom="16dp"
         android:layout_above="@+id/SingingUP"

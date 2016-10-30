@@ -7,26 +7,23 @@ import android.widget.TextView;
 
 import com.example.ibm.pager__9_10.R;
 
-public class done extends AppCompatActivity
-{
+public class done extends AppCompatActivity {
 
     private TextView input, accomplish;
-    private String   num;
+    private String num;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_done);
 
-        input = (TextView)findViewById(R.id.inputted);
-        accomplish = (TextView)findViewById(R.id.textView);
+        input = (TextView) findViewById(R.id.inputted);
+        accomplish = (TextView) findViewById(R.id.textView);
 
-        Intent intent = getIntent();
-        num = intent.getStringExtra("num");
+        Intent move = getIntent();
+        num = move.getStringExtra("num");
 
         input.setText(num);
-
-
 
 
     }
