@@ -7,6 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.*;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.ibm.pager__9_10.R;
 
 //connect the Codebook activity to this activity.
@@ -34,16 +40,13 @@ public class compose extends AppCompatActivity {
         ourID = move.getStringExtra("ourID");
         theirID = move.getStringExtra("theirID");
 
-        our.setText(ourID); //SENDER's ID
-        them.setText(theirID.toString()); //RECIEVER'S ID
+        /*our.setText(ourID); //SENDER's ID
+        them.setText(theirID.toString()); //RECIEVER'S ID*/
 
         send.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (msg.getText() != null) {
-                    msg.setText("Message sent");
-                } else {
-                    msg.setText("Type your MSG!");
-                }
+                String sendingMSG = "http://64.137.191.97/sendMsg.php?userNumber="+ theirID + "&from=" + ourID + "&msgToSend=" + "'" + msg.getText().toString() + "'";
+                send(sendingMSG);
             }
         });
 
@@ -58,5 +61,32 @@ public class compose extends AppCompatActivity {
             }
         });
 
+    }
+    public void send(String credentials) {
+        final RequestQueue requestQueue = Volley.newRequestQueue(compose.this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, credentials,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if(response.compareTo("SENT") == 0)
+                        {
+                            Intent intent = new Intent(compose.this, done.class);
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            our.setText("MSG not sent for some reason!");
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                our.setText("Error sending msg!");
+                error.printStackTrace();
+                requestQueue.stop();
+            }
+        });
+        requestQueue.add(stringRequest);
     }
 }

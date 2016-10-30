@@ -14,7 +14,6 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -26,6 +25,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.example.ibm.PageMe.page"
+            android:noHistory="true"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden" />
         <activity
@@ -37,5 +37,4 @@
         <activity android:name="com.example.ibm.PageMe.encryption" />
         <activity android:name="com.example.ibm.PageMe.settings"></activity>
     </application>
-
 </manifest>

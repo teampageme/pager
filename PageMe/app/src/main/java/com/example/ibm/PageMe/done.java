@@ -20,10 +20,8 @@ public class done extends AppCompatActivity {
         input = (TextView) findViewById(R.id.inputted);
         accomplish = (TextView) findViewById(R.id.textView);
 
-        Intent move = getIntent();
-        num = move.getStringExtra("num");
 
-        input.setText(num);
+
 
 
     }

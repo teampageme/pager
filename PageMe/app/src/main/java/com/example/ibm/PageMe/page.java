@@ -141,8 +141,10 @@ public class page extends AppCompatActivity {
                 tv.setText(String.valueOf(num1 + num2 + num3 + num4 + num5 + num6 + num7 + num8 + num9));
             }
         });
+        //Transferring USERID to compose activity
         Intent move = getIntent();
         ourID = move.getStringExtra("ourID");
+
 
 
         //Record button Listener
@@ -164,4 +166,12 @@ public class page extends AppCompatActivity {
         });
 
     }
+
+    //Prevent user from going back to previous activity.
+    @Override
+    public void onBackPressed() {
+
+        return;
+    }
+
 }

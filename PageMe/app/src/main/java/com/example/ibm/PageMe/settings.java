@@ -28,11 +28,10 @@ public class settings extends AppCompatActivity {
         final long[] THREE_CYCLES = { 1000, 1000, 1000,  1000, 1000, 1000 };
         final long[] SILENT =  {0};
 
-
         vib.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Vibrator vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-
                 if(osyr.isChecked())
                 {
                     vib.vibrate(ONE_CYLCE, -1);
@@ -49,7 +48,6 @@ public class settings extends AppCompatActivity {
                 {
                     vib.vibrate(SILENT, -1);
                 }
-
             }
         });
 
