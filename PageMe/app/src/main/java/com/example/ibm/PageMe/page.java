@@ -7,27 +7,30 @@ import android.util.Log;
 import android.view.*;
 import android.widget.*;
 import android.content.*;
-import java.lang.Math;
-import com.example.ibm.pager__9_10.R;
 
+import java.lang.Math;
+
+import com.example.ibm.pager__9_10.R;
 
 //The UI for this activity will be polished later.
 
-
-public class page extends AppCompatActivity
-{
-    private int          num1,       num2,       num3,       num4,       num5,       num6,       num7,       num8,       num9;
+public class page extends AppCompatActivity {
+    //Predeclarations
+    private int num1, num2, num3, num4, num5, num6, num7, num8, num9;
     private NumberPicker numPicker1, numPicker2, numPicker3, numPicker4, numPicker5, numPicker6, numPicker7, numPicker8, numPicker9;
-    private TextView     tv;
-    private ImageButton  record, settings;
+    private TextView tv;
+    private ImageButton record, settings;
+    private String ourID;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page);
 
+        //Declarations
         tv = (TextView) findViewById(R.id.tv);
+        record = (ImageButton) findViewById(R.id.tasgyl);
+        settings = (ImageButton) findViewById(R.id.setting);
 
         numPicker1 = (NumberPicker) findViewById(R.id.numberPicker1);
         numPicker1.setMaxValue(9);
@@ -75,109 +78,100 @@ public class page extends AppCompatActivity
         numPicker9.setMinValue(0);
         numPicker9.setValue(0);
 
-
-        numPicker1.setOnValueChangedListener(new NumberPicker.OnValueChangeListener()
-        {
-            public void onValueChange(NumberPicker view, int oldValue, int newValue)
-            {
+        //Listeners
+        numPicker1.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            public void onValueChange(NumberPicker view, int oldValue, int newValue) {
                 num1 = (int) (newValue * Math.pow(10, 8));
                 tv.setText(String.valueOf(num1 + num2 + num3 + num4 + num5 + num6 + num7 + num8 + num9));
             }
         });
 
-        numPicker2.setOnValueChangedListener(new NumberPicker.OnValueChangeListener()
-        {
-            public void onValueChange(NumberPicker view, int oldValue, int newValue)
-            {
+        numPicker2.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            public void onValueChange(NumberPicker view, int oldValue, int newValue) {
                 num2 = (int) (newValue * Math.pow(10, 7));
                 tv.setText(String.valueOf(num1 + num2 + num3 + num4 + num5 + num6 + num7 + num8 + num9));
             }
         });
 
-        numPicker3.setOnValueChangedListener(new NumberPicker.OnValueChangeListener()
-        {
-            public void onValueChange(NumberPicker view, int oldValue, int newValue)
-            {
+        numPicker3.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            public void onValueChange(NumberPicker view, int oldValue, int newValue) {
                 num3 = (int) (newValue * Math.pow(10, 6));
                 tv.setText(String.valueOf(num1 + num2 + num3 + num4 + num5 + num6 + num7 + num8 + num9));
             }
         });
 
-        numPicker4.setOnValueChangedListener(new NumberPicker.OnValueChangeListener()
-        {
-            public void onValueChange(NumberPicker view, int oldValue, int newValue)
-            {
+        numPicker4.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            public void onValueChange(NumberPicker view, int oldValue, int newValue) {
                 num4 = (int) (newValue * Math.pow(10, 5));
                 tv.setText(String.valueOf(num1 + num2 + num3 + num4 + num5 + num6 + num7 + num8 + num9));
             }
         });
 
-        numPicker5.setOnValueChangedListener(new NumberPicker.OnValueChangeListener()
-        {
-            public void onValueChange(NumberPicker view, int oldValue, int newValue)
-            {
+        numPicker5.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            public void onValueChange(NumberPicker view, int oldValue, int newValue) {
                 num5 = (int) (newValue * Math.pow(10, 4));
                 tv.setText(String.valueOf(num1 + num2 + num3 + num4 + num5 + num6 + num7 + num8 + num9));
             }
         });
 
-        numPicker6.setOnValueChangedListener(new NumberPicker.OnValueChangeListener()
-        {
-            public void onValueChange(NumberPicker view, int oldValue, int newValue)
-            {
+        numPicker6.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            public void onValueChange(NumberPicker view, int oldValue, int newValue) {
                 num6 = (int) (newValue * Math.pow(10, 3));
                 tv.setText(String.valueOf(num1 + num2 + num3 + num4 + num5 + num6 + num7 + num8 + num9));
             }
         });
 
-        numPicker7.setOnValueChangedListener(new NumberPicker.OnValueChangeListener()
-        {
-            public void onValueChange(NumberPicker view, int oldValue, int newValue)
-            {
+        numPicker7.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            public void onValueChange(NumberPicker view, int oldValue, int newValue) {
                 num7 = (int) (newValue * Math.pow(10, 2));
                 tv.setText(String.valueOf(num1 + num2 + num3 + num4 + num5 + num6 + num7 + num8 + num9));
             }
         });
 
-        numPicker8.setOnValueChangedListener(new NumberPicker.OnValueChangeListener()
-        {
-            public void onValueChange(NumberPicker view, int oldValue, int newValue)
-            {
+        numPicker8.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            public void onValueChange(NumberPicker view, int oldValue, int newValue) {
                 num8 = (int) (newValue * Math.pow(10, 1));
                 tv.setText(String.valueOf(num1 + num2 + num3 + num4 + num5 + num6 + num7 + num8 + num9));
             }
         });
 
-        numPicker9.setOnValueChangedListener(new NumberPicker.OnValueChangeListener()
-        {
-            public void onValueChange(NumberPicker view, int oldValue, int newValue)
-            {
+        numPicker9.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            public void onValueChange(NumberPicker view, int oldValue, int newValue) {
                 num9 = (int) (newValue * Math.pow(10, 0));
                 tv.setText(String.valueOf(num1 + num2 + num3 + num4 + num5 + num6 + num7 + num8 + num9));
             }
         });
+        //Transferring USERID to compose activity
+        Intent move = getIntent();
+        ourID = move.getStringExtra("ourID");
 
-        record = (ImageButton) findViewById(R.id.tasgyl);
-        settings = (ImageButton) findViewById(R.id.setting);
 
-        record.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(page.this, done.class);
-                intent.putExtra("num", tv.getText());
+
+        //Record button Listener
+        record.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(page.this, compose.class);
+                intent.putExtra("theirID", tv.getText());
+                intent.putExtra("ourID", ourID);
                 startActivity(intent);
             }
         });
 
-        settings.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
+        //Settings button Listener
+        settings.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 Intent intent = new Intent(page.this, settings.class);
                 startActivity(intent);
             }
         });
 
     }
+
+    //Prevent user from going back to previous activity.
+    @Override
+    public void onBackPressed() {
+
+        return;
+    }
+
 }

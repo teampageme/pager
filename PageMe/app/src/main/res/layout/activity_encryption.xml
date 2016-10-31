@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         android:ems="10"
-        android:id="@+id/pass"
+        android:id="@+id/ser"
         android:layout_marginBottom="47dp"
         android:hint="Type your Password"
         android:layout_above="@+id/bn2" />
