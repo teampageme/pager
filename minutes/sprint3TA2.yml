@@ -1,0 +1,29 @@
+date: October 19, 2016
+
+meeting_type: ta
+
+attendance: [<shokoors>, , <alikafag>,<saisaokh>,<mes59>,<adithyan>,<jaeheunk>]
+
+absent: [ ]
+
+excused_absences: []
+
+task_progress: 
+[ # All group members must be included here even if they haven't made any progress since the last meeting
+ 
+ {ubit: <shokoors>, progress: Worked on send },
+ 
+ {ubit: <jaeheunk>, progress: Worked on encryption on server side},
+ 
+ {ubit: <adithyan>, progress: Worked on code book and creating files },
+  
+{ubit: <alikafag>, progress: Worked on encryption of passwords},
+  
+{ubit: <saisaokh>, progress: },
+  
+{ubit: <mes59>, progress: Worked on user and login},
+  ]
+
+issues: [ None for now ]
+
+Notes:  | 

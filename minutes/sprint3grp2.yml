@@ -1,0 +1,28 @@
+date: October 29, 2016
+
+meeting_type: group
+attendance: [<shokoors>, , <alikafag>,<saisaokh>,<mes59>,<jaeheunk>]
+
+absent: [<adithyan>, ]
+
+excused_absences: [Out of town]
+
+task_progress: 
+[ # All group members must be included here even if they haven't made any progress since the last meeting
+ 
+ {ubit: <shokoors>, progress: Worked on send and trying to do the get message},
+ 
+ {ubit: <jaeheunk>, progress: Worked on encryption on server side, send and recieve message scripts on server},
+ 
+ {ubit: <adithyan>, progress: Worked on code book and creating files },
+  
+{ubit: <alikafag>, progress: Worked on encryption of passwords, login and registering client},
+  
+{ubit: <saisaokh>, progress: },
+  
+{ubit: <mes59>, progress: Worked on user and login server side, and database for registering user},
+  ]
+
+issues: [ None for now ]
+
+Notes:  | 
