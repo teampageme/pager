@@ -1,0 +1,71 @@
+package com.example.ibm.PageMe;
+
+import android.content.Context;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.os.Vibrator;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RadioButton;
+
+import com.example.ibm.pager__9_10.R;
+
+public class settings extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_settings);
+
+        Button vib = (Button)findViewById(R.id.prv);
+        final RadioButton osyr = (RadioButton)findViewById(R.id.shrt);
+        final RadioButton taktka = (RadioButton)findViewById(R.id.taptap);
+        final RadioButton tawyl = (RadioButton)findViewById(R.id.lng);
+        final RadioButton saket = (RadioButton)findViewById(R.id.slnt);
+
+
+        final long[] ONE_CYLCE = {0, 100, 0, 100};
+        final long[] TAPS = {0, 200, 200, 200, 200, 200, 200, 200, 200};
+        final long[] THREE_CYCLES = { 1000, 1000, 1000,  1000, 1000, 1000 };
+        final long[] SILENT =  {0};
+
+        vib.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                Vibrator vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                if(osyr.isChecked())
+                {
+                    vib.vibrate(ONE_CYLCE, -1);
+                }
+                else if(taktka.isChecked())
+                {
+                    vib.vibrate(TAPS, -1);
+                }
+                else if(tawyl.isChecked())
+                {
+                    vib.vibrate(THREE_CYCLES, -1);
+                }
+                else if(saket.isChecked())
+                {
+                    vib.vibrate(SILENT, -1);
+                }
+            }
+        });
+
+        /*
+        TODOS:
+
+        Push notification on/off: https://developer.android.com/guide/topics/ui/notifiers/notifications.html
+        Refreshing period setup
+        Signing out : Exiting the app
+
+        */
+    }
+    @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(settings.this, page.class);
+        startActivity(intent);
+    }
+
+}
