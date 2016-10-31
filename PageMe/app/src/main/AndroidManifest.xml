@@ -35,6 +35,8 @@
             android:name="com.example.ibm.PageMe.done"
             android:screenOrientation="portrait" />
         <activity android:name="com.example.ibm.PageMe.encryption" />
-        <activity android:name="com.example.ibm.PageMe.settings"></activity>
+        <activity android:name="com.example.ibm.PageMe.settings"
+            android:screenOrientation="portrait"/>
+
     </application>
 </manifest>

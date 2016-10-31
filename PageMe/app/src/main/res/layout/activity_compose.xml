@@ -24,12 +24,12 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Type your MSG"
-        android:inputType="text"
         android:id="@+id/MSG"
         android:layout_marginTop="107dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:inputType="number"
+        android:hint="Type your MSG" />
 
 
     <Button

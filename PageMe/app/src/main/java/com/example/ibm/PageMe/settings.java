@@ -1,6 +1,7 @@
 package com.example.ibm.PageMe;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -60,4 +61,11 @@ public class settings extends AppCompatActivity {
 
         */
     }
+    @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(settings.this, page.class);
+        startActivity(intent);
+    }
+
 }

@@ -45,7 +45,7 @@ public class compose extends AppCompatActivity {
 
         send.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String sendingMSG = "http://64.137.191.97/sendMsg.php?userNumber="+ theirID + "&from=" + ourID + "&msgToSend=" + "'" + msg.getText().toString() + "'";
+                String sendingMSG = "http://64.137.191.97/sendMsg.php?userNumber="+ theirID + "&from=" + ourID + "&msgToSend=" + msg.getText().toString();
                 send(sendingMSG);
             }
         });
@@ -89,4 +89,11 @@ public class compose extends AppCompatActivity {
         });
         requestQueue.add(stringRequest);
     }
+    @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(compose.this, page.class);
+        startActivity(intent);
+    }
+
 }

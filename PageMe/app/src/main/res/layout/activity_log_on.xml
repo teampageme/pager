@@ -43,13 +43,13 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/ser"
         android:hint="Enter your password"
         android:layout_below="@+id/errorNum"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="53dp" />
+        android:layout_marginTop="53dp"
+        android:inputType="textPassword" />
 
     <TextView
         android:layout_width="match_parent"
