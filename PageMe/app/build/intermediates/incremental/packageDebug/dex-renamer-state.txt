@@ -1,7 +1,0 @@
-#Sun Oct 30 18:55:18 EDT 2016
-base.0=C\:\\Users\\ibm\\AndroidStudioProjects\\PageMe\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_797942e4b927966d285fc1b981ccb14604f117c8
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=C\:\\Users\\ibm\\AndroidStudioProjects\\PageMe\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_5397d5f37f1fa99ce05aa105408aee52e761f63c\\classes.dex
-base.1=C\:\\Users\\ibm\\AndroidStudioProjects\\PageMe\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_5397d5f37f1fa99ce05aa105408aee52e761f63c
-file.0=C\:\\Users\\ibm\\AndroidStudioProjects\\PageMe\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_797942e4b927966d285fc1b981ccb14604f117c8\\classes.dex
