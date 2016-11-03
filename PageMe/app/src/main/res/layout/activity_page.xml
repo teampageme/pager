@@ -114,5 +114,14 @@
         android:layout_alignTop="@+id/tasgyl"
         android:layout_toEndOf="@+id/numberPicker8" />
 
+    <ImageButton
+        app2:srcCompat="@drawable/msgs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resala"
+        android:layout_alignTop="@+id/tasgyl"
+        android:layout_toStartOf="@+id/numberPicker3"
+        android:layout_marginEnd="21dp" />
+
 
 </RelativeLayout>

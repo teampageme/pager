@@ -80,7 +80,6 @@ public class log_on extends AppCompatActivity {
                         }
                     }
                 }, new Response.ErrorListener() {
-
             @Override
             public void onErrorResponse(VolleyError error) {
                 errorID.setText("Error Logging in!");

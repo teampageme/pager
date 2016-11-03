@@ -19,8 +19,9 @@ public class page extends AppCompatActivity {
     private int num1, num2, num3, num4, num5, num6, num7, num8, num9;
     private NumberPicker numPicker1, numPicker2, numPicker3, numPicker4, numPicker5, numPicker6, numPicker7, numPicker8, numPicker9;
     private TextView tv;
-    private ImageButton record, settings;
+    private ImageButton inbox, record, settings;
     private String ourID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +29,9 @@ public class page extends AppCompatActivity {
         setContentView(R.layout.activity_page);
 
         //Declarations
-        tv = (TextView) findViewById(R.id.tv);
-        record = (ImageButton) findViewById(R.id.tasgyl);
+        tv       = (TextView) findViewById(R.id.tv);
+        inbox    = (ImageButton) findViewById(R.id.resala);
+        record   = (ImageButton) findViewById(R.id.tasgyl);
         settings = (ImageButton) findViewById(R.id.setting);
 
         numPicker1 = (NumberPicker) findViewById(R.id.numberPicker1);
@@ -141,11 +143,18 @@ public class page extends AppCompatActivity {
                 tv.setText(String.valueOf(num1 + num2 + num3 + num4 + num5 + num6 + num7 + num8 + num9));
             }
         });
+
         //Transferring USERID to compose activity
         Intent move = getIntent();
         ourID = move.getStringExtra("ourID");
 
-
+        //inbox button Listener
+        inbox.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(page.this, retrieval.class);
+                startActivity(intent);
+            }
+        });
 
         //Record button Listener
         record.setOnClickListener(new View.OnClickListener() {
@@ -170,7 +179,6 @@ public class page extends AppCompatActivity {
     //Prevent user from going back to previous activity.
     @Override
     public void onBackPressed() {
-
         return;
     }
 

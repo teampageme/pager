@@ -24,7 +24,6 @@ public class compose extends AppCompatActivity {
     private Button codeBook;
     private String ourID, theirID;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
