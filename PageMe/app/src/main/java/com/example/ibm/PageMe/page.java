@@ -1,6 +1,7 @@
 package com.example.ibm.PageMe;
 
 import android.os.StrictMode;
+import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,7 +25,8 @@ public class page extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page);
 
@@ -152,6 +154,7 @@ public class page extends AppCompatActivity {
         inbox.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(page.this, retrieval.class);
+                intent.putExtra("ourID", ourID);
                 startActivity(intent);
             }
         });
@@ -159,10 +162,17 @@ public class page extends AppCompatActivity {
         //Record button Listener
         record.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(page.this, compose.class);
-                intent.putExtra("theirID", tv.getText());
-                intent.putExtra("ourID", ourID);
-                startActivity(intent);
+                if(tv.getText().toString().length() != 9)
+                {
+                    Intent intent = new Intent(page.this, compose.class);
+                    intent.putExtra("theirID", tv.getText());
+                    intent.putExtra("ourID", ourID);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Toast.makeText(page.this, "Contact ID num must be 9", Toast.LENGTH_LONG).show();
+                }
             }
         });
 

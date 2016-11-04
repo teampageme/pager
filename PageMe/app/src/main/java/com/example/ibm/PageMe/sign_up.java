@@ -1,6 +1,7 @@
 package com.example.ibm.PageMe;
 
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.*;
@@ -60,7 +61,9 @@ public class sign_up extends AppCompatActivity {
                 checkExisitngID = "http://64.137.191.97/testCheckForExistingID.php?id=" + checkID;
                 if (checkExisting(checkExisitngID) == "Error checking ID") {
                     nineBit.setText("Error checking ID");
-                } else {
+                }
+                else
+                {
                     while (checkExisting(checkExisitngID) == "EXISTS" && checkExisting(checkExisitngID) != "DOES_NOT_EXIST" && checkExisting(checkExisitngID) != "Error checking ID") {
                         pin = rnd.nextInt(999999999) + 100000000;
                         checkID = String.valueOf(pin);
@@ -68,6 +71,7 @@ public class sign_up extends AppCompatActivity {
                     }
                     nineBit.setText(checkID);
                     nworked.setText(("worked"));
+                    //Toast.makeText(sign_up.this, "this is my Toast message!!! =)",  Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -118,7 +122,7 @@ public class sign_up extends AppCompatActivity {
                     /*
                         Should have another field for inserting email address in the database for email confirmation later on.
                      */
-                    createUser = "http://64.137.191.97/testCreateUser.php?id=" + id + "&password=" + password + "&key=" + key;
+                    createUser = "http://64.137.191.97/testCreateUser.php?id=" + id + "&password=" + password + "&key=" + key; //should include email address for confirmation
                     eworked.setText(signUp(createUser));
 
                     Intent intent = new Intent(sign_up.this, page.class);

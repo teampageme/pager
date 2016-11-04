@@ -65,7 +65,8 @@ public class log_on extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, credentials,
                 new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(String response)
+                    {
                         errorPassword.setText(id);
                         if (response.compareTo("VALID") == 0) //if edit text is saying valid then move on else fuck it
                         {
@@ -73,9 +74,13 @@ public class log_on extends AppCompatActivity {
                             intent.putExtra("ourID", id);
                             startActivity(intent);
 
-                        } else if (response.compareTo("INVALID") == 0) {
+                        }
+                        else if (response.compareTo("INVALID") == 0)
+                        {
                             errorPassword.setText("Wrong Password or Username!");
-                        } else {
+                        }
+                        else
+                        {
                             errorID.setText("Please type all the required credentials");
                         }
                     }
@@ -88,5 +93,11 @@ public class log_on extends AppCompatActivity {
             }
         });
         requestQueue.add(stringRequest);
+    }
+
+    //Prevent user from going back to previous activity.
+    @Override
+    public void onBackPressed() {
+        return;
     }
 }
