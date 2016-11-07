@@ -8,9 +8,7 @@ import android.util.Log;
 import android.view.*;
 import android.widget.*;
 import android.content.*;
-
 import java.lang.Math;
-
 import com.example.ibm.pager__9_10.R;
 
 //The UI for this activity will be polished later.
@@ -162,7 +160,7 @@ public class page extends AppCompatActivity {
         //Record button Listener
         record.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(tv.getText().toString().length() != 9)
+                if(tv.getText().toString().length() == 9)
                 {
                     Intent intent = new Intent(page.this, compose.class);
                     intent.putExtra("theirID", tv.getText());

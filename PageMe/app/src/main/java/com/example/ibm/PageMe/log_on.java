@@ -34,8 +34,6 @@ public class log_on extends AppCompatActivity {
         logIn = (Button) findViewById(R.id.SingingIN);
         create = (Button) findViewById(R.id.SingingUP);
 
-
-
         logIn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 id = num.getText().toString();

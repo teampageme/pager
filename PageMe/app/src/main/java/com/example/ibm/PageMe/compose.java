@@ -67,6 +67,7 @@ public class compose extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        our.setText(response);
                         if(response.compareTo("SENT") == 0)
                         {
                             Intent intent = new Intent(compose.this, done.class);
