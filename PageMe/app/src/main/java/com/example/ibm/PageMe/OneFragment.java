@@ -92,12 +92,14 @@ public class OneFragment extends Fragment {
                                 {
                                     singleLine.add(line);
                                 }
+/*
                                 Log.d("MYTAG", Arrays.toString(singleLine.toArray()));
                                 Log.d("number", String.valueOf(singleLine.size()));
                                 singleLine.remove(singleLine.size() -1);
                                 Log.d("MYTAG", Arrays.toString(singleLine.toArray()));
                                 Log.d("number", String.valueOf(singleLine.size()));
                                 Log.d("last", singleLine.get(1));
+*/
                             }
                             catch (IOException e)
                             {
@@ -113,8 +115,9 @@ public class OneFragment extends Fragment {
                                 String toBeParsed;
                                 while(!singleLine.isEmpty())//for (int i = 0; i < singleLine.size(); i++)
                                 {
+                                    //process each element in the arraylist and then use the tokenizer
                                     toBeParsed =  singleLine.get((singleLine.size() -1));
-/*
+
                                     StringTokenizer stk = new StringTokenizer(toBeParsed, ",");
                                     stk.nextToken();
                                     String senderID = stk.nextToken();
@@ -123,10 +126,13 @@ public class OneFragment extends Fragment {
                                     String timeStamp = firstTime + secondTime;
                                     timeStamp = timeStamp.replaceAll("\"", "");
                                     String message = stk.nextToken();
-                                    txt.setText(senderID + "\n" + timeStamp + "\n" + message + "\n");
-*/
+//                                    txt.setText(senderID + "\n" + timeStamp + "\n" + message + "\n");
+
                                     //txt.setText(toBeParsed);
-                                    Log.d("MYTAG", toBeParsed);
+                                    Log.d("to be parsed", toBeParsed);
+                                    Log.d("sendID", senderID);
+                                    Log.d("timeStamp", timeStamp);
+                                    Log.d("message", message);
                                     singleLine.remove(singleLine.size() -1);
 
                                 }

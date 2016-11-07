@@ -78,5 +78,6 @@ public class retrieval extends AppCompatActivity
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(retrieval.this, page.class);
-        startActivity(intent);    }
+        startActivity(intent);
+    }
 }

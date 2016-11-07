@@ -24,10 +24,10 @@ public class settings extends AppCompatActivity {
         final RadioButton saket = (RadioButton)findViewById(R.id.slnt);
 
 
-        final long[] ONE_CYLCE = {0, 100, 0, 100};
-        final long[] TAPS = {0, 200, 200, 200, 200, 200, 200, 200, 200};
-        final long[] THREE_CYCLES = { 1000, 1000, 1000,  1000, 1000, 1000 };
-        final long[] SILENT =  {0};
+        final long[] ONE_CYLCE    = {0,    100,  0,     100};
+        final long[] TAPS         = {0,    200,  200,   200,  200,  200, 200, 200, 200};
+        final long[] THREE_CYCLES = {1000, 1000, 1000,  1000, 1000, 1000};
+        final long[] SILENT       = {0};
 
         vib.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)

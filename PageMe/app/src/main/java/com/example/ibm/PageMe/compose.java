@@ -61,6 +61,7 @@ public class compose extends AppCompatActivity {
         });
 
     }
+
     public void send(String credentials) {
         final RequestQueue requestQueue = Volley.newRequestQueue(compose.this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, credentials,
@@ -89,11 +90,10 @@ public class compose extends AppCompatActivity {
         });
         requestQueue.add(stringRequest);
     }
+
     @Override
     public void onBackPressed() {
-
         Intent intent = new Intent(compose.this, page.class);
         startActivity(intent);
     }
-
 }
