@@ -8,7 +8,17 @@ import android.util.Log;
 import android.view.*;
 import android.widget.*;
 import android.content.*;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.Math;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,6 +45,11 @@ public class page extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page);
+        if (android.os.Build.VERSION.SDK_INT > 9)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
         //Declarations
         tv       = (TextView) findViewById(R.id.tv);
@@ -170,23 +185,13 @@ public class page extends AppCompatActivity {
             public void onClick(View v) {
                 if(tv.getText().toString().length() == 9)
                 {
+                    sign_up of = new sign_up();
                     checkExisitngID = "http://64.137.191.97/testCheckForExistingID.php?id=" + tv.getText().toString();
-
-                    if(checkExisting(checkExisitngID) == "EXISTS")
-                    {
-                        Intent intent = new Intent(page.this, compose.class);
-                        intent.putExtra("theirID", tv.getText());
-                        intent.putExtra("ourID", ourID);
-                        startActivity(intent);
-                    }
-                    else
-                    {
-                        Toast.makeText(page.this, "Contact ID typed does not exist", Toast.LENGTH_LONG).show();
-                    }
+                    check(checkExisitngID);
                 }
                 else
                 {
-                    Toast.makeText(page.this, "Contact ID num must be 9", Toast.LENGTH_LONG).show();
+                    Toast.makeText(page.this, "Contact ID must be 9 digits", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -198,30 +203,65 @@ public class page extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
-    public String checkExisting(String checking) {
-        final RequestQueue requestQueue = Volley.newRequestQueue(page.this);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, checking,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        chkIdResponse = response;
-                    }
-                }, new Response.ErrorListener() {
 
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                chkIdResponse = "Error checking ID";
-                error.printStackTrace();
-                requestQueue.stop();
+
+    public void check(String checking)
+    {
+        URL url = null;
+        try
+        {
+            url = new URL(checking); //url = phpscript: retrieve.php
+        }
+        catch (MalformedURLException e)
+        {
+            e.printStackTrace();
+        }
+        HttpURLConnection urlConnection = null;
+        try
+        {
+            urlConnection = (HttpURLConnection) url.openConnection();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        try
+        {
+            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            String line = reader.readLine();
+            Log.d("checking now: ", line);
+            if(line.compareTo("EXISTS") == 0)
+            {
+                Intent intent = new Intent(page.this, compose.class);
+                intent.putExtra("theirID", tv.getText());
+                intent.putExtra("ourID", ourID);
+                startActivity(intent);
             }
-        });
-        requestQueue.add(stringRequest);
-        return chkIdResponse;
-    }
+            else if(line.compareTo("DOES_NOT_EXIST") == 0)
+            {
+                Toast.makeText(page.this, "Contact ID typed does not exist", Toast.LENGTH_LONG).show();
+            }
+            else
+            {
+                Toast.makeText(page.this, "ERROR 404", Toast.LENGTH_LONG).show();
 
-    //Prevent user from going back to previous activity.
+            }
+            //Log.d("check: ", line);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            urlConnection.disconnect();
+        }
+        //Log.d("check final: ", chkIdResponse);
+
+    }
+        //Prevent user from going back to previous activity.
     @Override
     public void onBackPressed() {
         return;

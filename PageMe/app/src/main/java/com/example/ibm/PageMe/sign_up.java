@@ -29,7 +29,7 @@ public class sign_up extends AppCompatActivity {
     private Button generate, finish, checkP, checkE;
     private String id, password, key, checkID, encryptedPass;
     private String createUser, checkExisitngID;
-    private String chkIdResponse, signUpResponse;
+    private String chkIdResponse, signUpResponse, chkIdResponse2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
