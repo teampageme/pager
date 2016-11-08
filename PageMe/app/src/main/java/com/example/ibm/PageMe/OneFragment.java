@@ -1,156 +1,170 @@
 package com.example.ibm.PageMe;
 
 import android.content.Intent;
+import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 import com.example.ibm.pager__9_10.R;
-
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
-public class OneFragment extends Fragment {
-    TextView msg, txt;
-    private String msgResponse, ourID;
+public class OneFragment extends Fragment
+{
+    private ArrayList<String> msgResponse;
+    private ArrayList<String> getting;
+    private String ourID;
 
-
-    public OneFragment() {
-        // Required empty public constructor
-
-    }
+    public OneFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) throws NoSuchElementException {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) throws NoSuchElementException
+    {
         View myinflated = inflater.inflate(R.layout.activity_one_fragment, container, false);
+
+        if (android.os.Build.VERSION.SDK_INT > 9)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
         Intent move = getActivity().getIntent();
         ourID = move.getStringExtra("ourID");
-        //String server_url = "http://64.137.191.97/retrieve.php?userNumber=" + ourID;
 
-        txt = (TextView) myinflated.findViewById(R.id.trying);
-        //txt.setText(getMSG(server_url));
         String server_url = "http://64.137.191.97/retrieve.php?pwd=Chloe1234&userNumber=" + ourID;
 
-        //String parsing = getMSG(server_url);
-        //String trimedParsing = parsing.replaceAll("<br */>", "");
-        getMSG(server_url);
+        getting = getMSG(server_url); //getMSG function executes the php script [server_url] and retrieves an arraylist that have been parsed from the csv file and stores the correctly parsed arraylist into the variable getting.
 
-        //txt.setText(parsing);
+        String li[]=getting.toArray(new String[getting.size()]); //converts arraylist getting into an array.
+
+        ListView listView = (ListView) myinflated.findViewById(R.id.list1); //mapping the java code with the xml code id for intializing listview
+
+        ArrayAdapter<String> listViewAdaptor = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, li);
+        listView.setAdapter(listViewAdaptor); //setting listview to show the content of the array li
 
 
-        return myinflated;
-    }
-
-    public void getMSG(String credentials) {
-        final RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, credentials,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        msgResponse = response;
-                        //txt.setText(msgResponse);
-
-                        if (msgResponse.compareTo("NOMSG") == 0) {
-                            txt.setText("no msgs to show");
-                        } else {
-                            msgResponse = msgResponse.replaceAll("<br */>", ""); //removes the <br/> token occurences from the string msgResponse
-
-                            ArrayList<String> singleLine = new ArrayList(); // intializing arraylist
-                            InputStream is = new ByteArrayInputStream(msgResponse.getBytes());
-                            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-                            String line = null;
-                            try
-                            {
-                                while ((line = br.readLine()) != null)
-                                {
-                                    singleLine.add(line);
-                                }
-/*
-                                Log.d("MYTAG", Arrays.toString(singleLine.toArray()));
-                                Log.d("number", String.valueOf(singleLine.size()));
-                                singleLine.remove(singleLine.size() -1);
-                                Log.d("MYTAG", Arrays.toString(singleLine.toArray()));
-                                Log.d("number", String.valueOf(singleLine.size()));
-                                Log.d("last", singleLine.get(1));
-*/
-                            }
-                            catch (IOException e)
-                            {
-                                e.printStackTrace();
-                            }
-
-                            if (singleLine.isEmpty())
-                            {
-                                txt.setText("No msgs to show!");
-                            }
-                            else if(!singleLine.isEmpty())
-                            {
-                                String toBeParsed;
-                                while(!singleLine.isEmpty())//for (int i = 0; i < singleLine.size(); i++)
-                                {
-                                    //process each element in the arraylist and then use the tokenizer
-                                    toBeParsed =  singleLine.get((singleLine.size() -1));
-
-                                    StringTokenizer stk = new StringTokenizer(toBeParsed, ",");
-                                    stk.nextToken();
-                                    String senderID = stk.nextToken();
-                                    String firstTime = stk.nextToken();
-                                    String secondTime = stk.nextToken();
-                                    String timeStamp = firstTime + secondTime;
-                                    timeStamp = timeStamp.replaceAll("\"", "");
-                                    String message = stk.nextToken();
-//                                    txt.setText(senderID + "\n" + timeStamp + "\n" + message + "\n");
-
-                                    //txt.setText(toBeParsed);
-                                    Log.d("to be parsed", toBeParsed);
-                                    Log.d("sendID", senderID);
-                                    Log.d("timeStamp", timeStamp);
-                                    Log.d("message", message);
-                                    singleLine.remove(singleLine.size() -1);
-
-                                }
-                            }
-                            else
-                            {
-                                txt.setText("a7a ya 7amdy");
-                            }
-                        }
-                    }
-                }, new Response.ErrorListener() {
+        /*
+             TODO:   figure a way to set clicklisteners dynamically
+         */
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                msgResponse = "Error getting msgs";
-                txt.setText(msgResponse);
-                requestQueue.stop();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) { //these are clicklisteners for each clickable textView
+                if(position == 0)
+                {
+                    Toast.makeText(getActivity(),"you clicked first item", Toast.LENGTH_SHORT).show();
+                }
+                else if (position == 1)
+                {
+                    Toast.makeText(getActivity(),"you clicked second item", Toast.LENGTH_SHORT).show();
+                }
+                else if (position == 2)
+                {
+                    Toast.makeText(getActivity(),"you clicked first item", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-        requestQueue.add(stringRequest);
+
+        return myinflated; //returns the updated fragment to the screen
+    }
+
+
+    public ArrayList<String> getMSG(String credentials)
+    {
+        URL url = null;
+        try
+        {
+            url = new URL(credentials); //url = phpscript: retrieve.php
+        }
+        catch (MalformedURLException e)
+        {
+            e.printStackTrace();
+        }
+        HttpURLConnection urlConnection = null;
+        try
+        {
+            urlConnection = (HttpURLConnection) url.openConnection();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        try
+        {
+            ArrayList<String> singleLine = new ArrayList(); // arraylist to recieve lines without <br /> tags
+            ArrayList<String> al         = new ArrayList(); // arraylist to receive correctly parsed lines from singleLine arraylist after using Tokenizers
+
+            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            StringBuilder response = new StringBuilder();
+            //Log.d("a7a:", response.toString());
+            String line = (response.toString()).replaceAll("<br */>", "");
+            //Log.d("a7a2:", line.toString());
+            while ((line = reader.readLine()) != null)
+            {
+                singleLine.add(line);
+            }
+            singleLine.remove(singleLine.size() - 1); //removes new line not visually seen (could be a bug)
+            if (singleLine.isEmpty())
+            {
+                Toast.makeText(getActivity(),"You have no Unread msgs", Toast.LENGTH_SHORT).show();
+            }
+            else if (!singleLine.isEmpty())
+            {
+                //Collections.reverse(singleLine); //can be use if user want to sort msgs
+                String toBeParsed;
+                while (!singleLine.isEmpty())
+                {
+                    toBeParsed = singleLine.get((singleLine.size() - 1));
+                    StringTokenizer stk = new StringTokenizer(toBeParsed, ",");
+                    stk.nextToken();
+                    String senderID = stk.nextToken();
+                    String firstTime = stk.nextToken();
+                    String secondTime = stk.nextToken();
+                    String timeStamp = firstTime + secondTime;
+                    timeStamp = timeStamp.replaceAll("\"", "");
+                    String message = stk.nextToken();
+                    al.add("From: " + senderID + " Msg: " + message + " date: " + timeStamp);
+                    singleLine.remove(singleLine.size() - 1);
+                }
+                msgResponse = al;
+                //Log.d("msgResponse array", Arrays.toString(msgResponse.toArray()));
+            }
+            else
+            {
+                Toast.makeText(getActivity(),"There has been issues retriving you msgs", Toast.LENGTH_SHORT).show();
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            urlConnection.disconnect();
+        }
+        //Log.d("msgResponse array", Arrays.toString(msgResponse.toArray()));
+        return msgResponse; //return arraylist al
     }
 }

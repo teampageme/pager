@@ -41,13 +41,8 @@
         <activity
             android:name="com.example.ibm.PageMe.settings"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="com.example.ibm.PageMe.MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity android:name="com.example.ibm.PageMe.retrieval" />
-        <activity android:name="com.example.ibm.PageMe.OneFragment" />
-        <activity android:name="com.example.ibm.PageMe.TwoFragment"></activity>
+        <activity android:name="com.example.ibm.PageMe.retrieval"
+            android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

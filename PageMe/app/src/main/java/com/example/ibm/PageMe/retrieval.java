@@ -35,15 +35,15 @@ public class retrieval extends AppCompatActivity
     private void setupViewPager(ViewPager viewPager)
     {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new OneFragment(), "READ");
-        adapter.addFragment(new TwoFragment(), "UNREAD");
+        adapter.addFragment(new OneFragment(), "UNREAD");
+        adapter.addFragment(new TwoFragment(), "READ");
         viewPager.setAdapter(adapter);
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter
     {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
+        private final List<Fragment> mFragmentList      = new ArrayList<>();
+        private final List<String>   mFragmentTitleList = new ArrayList<>();
 
         public ViewPagerAdapter(FragmentManager manager)
         {
@@ -74,6 +74,7 @@ public class retrieval extends AppCompatActivity
             return mFragmentTitleList.get(position);
         }
     }
+
     //Prevent user from going back to previous activity.
     @Override
     public void onBackPressed() {
