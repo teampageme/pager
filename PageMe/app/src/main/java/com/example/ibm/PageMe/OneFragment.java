@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,11 +55,12 @@ public class OneFragment extends Fragment
 
         String server_url = "http://64.137.191.97/retrieve.php?pwd=Chloe1234&userNumber=" + ourID;
 
+        //should implement a way to keep refreshing msgs every minute porbably.
         getting = getMSG(server_url); //getMSG function executes the php script [server_url] and retrieves an arraylist that have been parsed from the csv file and stores the correctly parsed arraylist into the variable getting.
 
         String li[]=getting.toArray(new String[getting.size()]); //converts arraylist getting into an array.
 
-        ListView listView = (ListView) myinflated.findViewById(R.id.list1); //mapping the java code with the xml code id for intializing listview
+        final ListView listView = (ListView) myinflated.findViewById(R.id.list1); //mapping the java code with the xml code id for intializing listview
 
         ArrayAdapter<String> listViewAdaptor = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, li);
         listView.setAdapter(listViewAdaptor); //setting listview to show the content of the array li
@@ -66,23 +68,17 @@ public class OneFragment extends Fragment
 
         /*
              TODO:   figure a way to set clicklisteners dynamically
+             TODO:   Find a way to move msgs from unread to read upon clicking
+             TODO:   Redirect the user to the reply with taking the senderID to page him
          */
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) { //these are clicklisteners for each clickable textView
-                if(position == 0)
-                {
-                    Toast.makeText(getActivity(),"you clicked first item", Toast.LENGTH_SHORT).show();
-                }
-                else if (position == 1)
-                {
-                    Toast.makeText(getActivity(),"you clicked second item", Toast.LENGTH_SHORT).show();
-                }
-                else if (position == 2)
-                {
-                    Toast.makeText(getActivity(),"you clicked first item", Toast.LENGTH_SHORT).show();
-                }
+                String item = listView.getItemAtPosition(position).toString();//for getting item with specfic position.
+                Log.d("OnClick", "position = " + (position + 1));
+                Log.d("OnClick", "item at position = " + item);
+                Toast.makeText(getActivity(),"message #: " + (position+1), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -139,10 +135,10 @@ public class OneFragment extends Fragment
                     toBeParsed = singleLine.get((singleLine.size() - 1));
                     StringTokenizer stk = new StringTokenizer(toBeParsed, ",");
                     stk.nextToken();
-                    String senderID = stk.nextToken();
-                    String firstTime = stk.nextToken();
+                    String senderID   = stk.nextToken();
+                    String firstTime  = stk.nextToken();
                     String secondTime = stk.nextToken();
-                    String timeStamp = firstTime + secondTime;
+                    String timeStamp  = firstTime + secondTime;
                     timeStamp = timeStamp.replaceAll("\"", "");
                     String message = stk.nextToken();
                     al.add("From: " + senderID + " Msg: " + message + " date: " + timeStamp);
