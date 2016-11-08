@@ -9,6 +9,13 @@ import android.view.*;
 import android.widget.*;
 import android.content.*;
 import java.lang.Math;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.ibm.pager__9_10.R;
 
 //The UI for this activity will be polished later.
@@ -20,6 +27,7 @@ public class page extends AppCompatActivity {
     private TextView tv;
     private ImageButton inbox, record, settings;
     private String ourID;
+    private String chkIdResponse, checkExisitngID;
 
 
     @Override
@@ -162,10 +170,19 @@ public class page extends AppCompatActivity {
             public void onClick(View v) {
                 if(tv.getText().toString().length() == 9)
                 {
-                    Intent intent = new Intent(page.this, compose.class);
-                    intent.putExtra("theirID", tv.getText());
-                    intent.putExtra("ourID", ourID);
-                    startActivity(intent);
+                    checkExisitngID = "http://64.137.191.97/testCheckForExistingID.php?id=" + tv.getText().toString();
+
+                    if(checkExisting(checkExisitngID) == "EXISTS")
+                    {
+                        Intent intent = new Intent(page.this, compose.class);
+                        intent.putExtra("theirID", tv.getText());
+                        intent.putExtra("ourID", ourID);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                        Toast.makeText(page.this, "Contact ID typed does not exist", Toast.LENGTH_LONG).show();
+                    }
                 }
                 else
                 {
@@ -182,6 +199,26 @@ public class page extends AppCompatActivity {
             }
         });
 
+    }
+    public String checkExisting(String checking) {
+        final RequestQueue requestQueue = Volley.newRequestQueue(page.this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, checking,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        chkIdResponse = response;
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                chkIdResponse = "Error checking ID";
+                error.printStackTrace();
+                requestQueue.stop();
+            }
+        });
+        requestQueue.add(stringRequest);
+        return chkIdResponse;
     }
 
     //Prevent user from going back to previous activity.
