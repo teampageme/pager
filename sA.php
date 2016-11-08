@@ -3,6 +3,12 @@ Mitchell and Jason 2016
 This script is for sending a message to all users. 
 It is for announcements and the geo-based message sending feature that is planned. 
 */
+
+if(htmlspecialchars($_GET["pwd"]) != 'Password')
+    {
+    exit();
+    }
+
 $toSend = htmlspecialchars($_GET["msg"]);
 $time = date('c');
 
