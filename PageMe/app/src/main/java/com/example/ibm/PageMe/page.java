@@ -186,7 +186,7 @@ public class page extends AppCompatActivity {
                 if(tv.getText().toString().length() == 9)
                 {
                     sign_up of = new sign_up();
-                    checkExisitngID = "http://64.137.191.97/testCheckForExistingID.php?id=" + tv.getText().toString();
+                    checkExisitngID = "http://64.137.186.203/testCheckForExistingID.php?id=" + tv.getText().toString();
                     check(checkExisitngID);
                 }
                 else

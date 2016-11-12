@@ -53,7 +53,7 @@ public class OneFragment extends Fragment
         Intent move = getActivity().getIntent();
         ourID = move.getStringExtra("ourID");
 
-        String server_url = "http://64.137.191.97/retrieve.php?pwd=Chloe1234&userNumber=" + ourID;
+        String server_url = "http://64.137.186.203/retrieve.php?pwd=Chloe1234&userNumber=" + ourID;
 
         //should implement a way to keep refreshing msgs every minute porbably.
         getting = getMSG(server_url); //getMSG function executes the php script [server_url] and retrieves an arraylist that have been parsed from the csv file and stores the correctly parsed arraylist into the variable getting.
@@ -70,7 +70,8 @@ public class OneFragment extends Fragment
              TODO:   figure a way to set clicklisteners dynamically
              TODO:   Find a way to move msgs from unread to read upon clicking
              TODO:   Redirect the user to the reply with taking the senderID to page him
-         */
+        */
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override

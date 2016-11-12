@@ -2,6 +2,7 @@ package com.example.ibm.PageMe;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.*;
@@ -39,13 +40,15 @@ public class log_on extends AppCompatActivity {
                 id = num.getText().toString();
                 password = passw.getText().toString();
 
-                /*try {
+                try {
                     encryptedPass = AES.encrypt(password);
+                    encryptedPass = encryptedPass.replaceAll("\n", "");
                 } catch (Exception e) {
                     e.printStackTrace();
-                }*/
+                }
 
-                loginValidation = "http://64.137.191.97/testValidateLogin.php?id=" + id + "&password='" + password + "'"; //later should send the password encrypted.
+                loginValidation = "http://64.137.186.203/testValidateLogin.php?id=" + id + "&password='" + encryptedPass + "'"; //later should send the password encrypted.
+                Log.d("printing", loginValidation);
                 LogIn(loginValidation);
             }
         });
@@ -66,19 +69,21 @@ public class log_on extends AppCompatActivity {
                     public void onResponse(String response)
                     {
                         errorPassword.setText(id);
-                        if (response.compareTo("VALID") == 0) //if edit text is saying valid then move on else fuck it
+                        Log.d("response ", response);
+                        if (response.trim().equalsIgnoreCase("VALID")) //if edit text is saying valid then move on else fuck it
                         {
                             Intent intent = new Intent(log_on.this, page.class);
                             intent.putExtra("ourID", id);
                             startActivity(intent);
-
+                            //Log.d("response ", "fuck yea");
                         }
-                        else if (response.compareTo("INVALID") == 0)
+                        else if (response.trim().equalsIgnoreCase("INVALID"))
                         {
                             errorPassword.setText("Wrong Password or Username!");
                         }
                         else
                         {
+                            //Log.d("response ", response);
                             errorID.setText("Please type all the required credentials");
                         }
                     }

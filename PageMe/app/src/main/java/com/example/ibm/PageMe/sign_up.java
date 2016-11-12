@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.*;
 
 import java.util.*;
@@ -58,7 +59,7 @@ public class sign_up extends AppCompatActivity {
                 Random rnd = new Random();
                 pin = rnd.nextInt(999999999) + 100000000;
                 checkID = String.valueOf(pin);
-                checkExisitngID = "http://64.137.191.97/testCheckForExistingID.php?id=" + checkID;
+                checkExisitngID = "http://64.137.186.203/testCheckForExistingID.php?id=" + checkID;
                 if (checkExisting(checkExisitngID) == "Error checking ID") {
                     nineBit.setText("Error checking ID");
                 }
@@ -67,7 +68,7 @@ public class sign_up extends AppCompatActivity {
                     while (checkExisting(checkExisitngID) == "EXISTS" && checkExisting(checkExisitngID) != "DOES_NOT_EXIST" && checkExisting(checkExisitngID) != "Error checking ID") {
                         pin = rnd.nextInt(999999999) + 100000000;
                         checkID = String.valueOf(pin);
-                        checkExisitngID = "http://64.137.191.97/testCheckForExistingID.php?id=" + checkID;
+                        checkExisitngID = "http://64.137.186.203/testCheckForExistingID.php?id=" + checkID;
                     }
                     nineBit.setText(checkID);
                     nworked.setText(("worked"));
@@ -113,20 +114,20 @@ public class sign_up extends AppCompatActivity {
                     password = "'" + pass.getText().toString() + "'";
                     key = "0"; //temporary.
 
-                    /*try {
+                    try {
                         encryptedPass = AES.encrypt(password);
+                        encryptedPass = encryptedPass.replaceAll("\n", "");
                     } catch (Exception e) {
                         e.printStackTrace();
-                    }*/
+                    }
 
                     /*
                         Should have another field for inserting email address in the database for email confirmation later on.
                      */
-                    createUser = "http://64.137.191.97/testCreateUser.php?id=" + id + "&password=" + password + "&key=" + key; //should include email address for confirmation
-                    eworked.setText(signUp(createUser));
-
-                    Intent intent = new Intent(sign_up.this, page.class);
-                    startActivity(intent);
+                    createUser = "http://64.137.186.203/testCreateUser.php?id=" + id + "&password='" + encryptedPass + "'&key=" + key; //should include email address for confirmation
+                    //eworked.setText(signUp(createUser));
+                    Log.d("script",  createUser);
+                    signUp(createUser);
                 }
             }
         });
@@ -192,6 +193,16 @@ public class sign_up extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         signUpResponse = response;
+                        if(signUpResponse.trim().equalsIgnoreCase("SUCCESS"))
+                        {
+                            Intent intent = new Intent(sign_up.this, page.class);
+                            startActivity(intent);
+                        }
+                        else if(signUpResponse.trim().equalsIgnoreCase("FAILED_TO_CREATE"))
+                        {
+                            Toast.makeText(sign_up.this, "Failed creating user for some reason", Toast.LENGTH_LONG).show();
+                        }
+
                     }
                 }, new Response.ErrorListener() {
 

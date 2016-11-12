@@ -17,36 +17,33 @@ public class settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        Button vib = (Button)findViewById(R.id.prv);
-        final RadioButton osyr = (RadioButton)findViewById(R.id.shrt);
-        final RadioButton taktka = (RadioButton)findViewById(R.id.taptap);
-        final RadioButton tawyl = (RadioButton)findViewById(R.id.lng);
-        final RadioButton saket = (RadioButton)findViewById(R.id.slnt);
+        Button vib = (Button) findViewById(R.id.prv);
+        Button out = (Button) findViewById(R.id.out);
+        final RadioButton osyr = (RadioButton) findViewById(R.id.shrt);
+        final RadioButton taktka = (RadioButton) findViewById(R.id.taptap);
+        final RadioButton tawyl = (RadioButton) findViewById(R.id.lng);
+        final RadioButton saket = (RadioButton) findViewById(R.id.slnt);
 
 
-        final long[] ONE_CYLCE    = {0,    100,  0,     100};
-        final long[] TAPS         = {0,    200,  200,   200,  200,  200, 200, 200, 200};
-        final long[] THREE_CYCLES = {1000, 1000, 1000,  1000, 1000, 1000};
-        final long[] SILENT       = {0};
+        final long[] ONE_CYLCE = {100, 0, 100, 100, 0, 100, 100, 0, 100};
+        final long[] TAPS = {200, 200, 200, 200, 200, 200, 200, 200};
+        final long[] THREE_CYCLES = {500, 500, 500, 500, 500, 500};
+        final long[] SILENT = {0};
 
         vib.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Vibrator vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                if(osyr.isChecked())
-                {
+                if (osyr.isChecked()) {
+                    vib.cancel();
                     vib.vibrate(ONE_CYLCE, -1);
-                }
-                else if(taktka.isChecked())
-                {
+                } else if (taktka.isChecked()) {
+                    vib.cancel();
                     vib.vibrate(TAPS, -1);
-                }
-                else if(tawyl.isChecked())
-                {
+                } else if (tawyl.isChecked()) {
+                    vib.cancel();
                     vib.vibrate(THREE_CYCLES, -1);
-                }
-                else if(saket.isChecked())
-                {
+                } else if (saket.isChecked()) {
+                    vib.cancel();
                     vib.vibrate(SILENT, -1);
                 }
             }
@@ -60,12 +57,21 @@ public class settings extends AppCompatActivity {
         Signing out : Exiting the app
 
         */
-    }
-    @Override
-    public void onBackPressed() {
+        out.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(settings.this, homepage.class);
+                startActivity(intent);
+            }
 
+        });
+
+    }
+
+    @Override
+    public void onBackPressed () {
         Intent intent = new Intent(settings.this, page.class);
         startActivity(intent);
     }
 
 }
+

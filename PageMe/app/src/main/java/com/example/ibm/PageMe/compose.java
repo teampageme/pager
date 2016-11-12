@@ -44,7 +44,7 @@ public class compose extends AppCompatActivity {
 
         send.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String sendingMSG = "http://64.137.191.97/sendMsg.php?userNumber="+ theirID + "&from=" + ourID + "&msgToSend=" + msg.getText().toString();
+                String sendingMSG = "http://64.137.186.203/sendMsg.php?userNumber="+ theirID + "&from=" + ourID + "&msgToSend=" + msg.getText().toString();
                 send(sendingMSG);
             }
         });
@@ -69,7 +69,7 @@ public class compose extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         our.setText(response);
-                        if(response.compareTo("SENT") == 0)
+                        if(response.trim().equalsIgnoreCase("SENT"))
                         {
                             Intent intent = new Intent(compose.this, done.class);
                             startActivity(intent);
