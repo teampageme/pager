@@ -1,5 +1,6 @@
 package com.example.ibm.PageMe;
 
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,6 +42,8 @@ public class log_on extends AppCompatActivity {
                 password = passw.getText().toString();
                 Log.d("password", password);
 
+                double startTime = (double) System.currentTimeMillis();
+
                 try {
                     encryptedPass = AES.encrypt(password);
                     encryptedPass = encryptedPass.replaceAll("\n", "");
@@ -51,6 +54,10 @@ public class log_on extends AppCompatActivity {
                 loginValidation = "http://64.137.191.97/interface.php?script=login&id=" + id + "&password='" + encryptedPass + "'"; //later should send the password encrypted.
                 Log.d("printing", loginValidation);
                 LogIn(loginValidation);
+
+                double stopTime = (double) System.currentTimeMillis();
+                double elapsedTime = stopTime - startTime;
+                Log.d("runtime", String.valueOf(elapsedTime/1000));
             }
         });
 
@@ -61,9 +68,11 @@ public class log_on extends AppCompatActivity {
             }
         });
     }
- /*
-    Change volley timeout request
- */
+
+
+    /*
+        Change volley timeout request
+    */
     public void LogIn(String credentials) {
         final RequestQueue requestQueue = Volley.newRequestQueue(log_on.this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, credentials,
@@ -89,6 +98,7 @@ public class log_on extends AppCompatActivity {
                             //Log.d("response ", response);
                             errorID.setText("Please type all the required credentials");
                         }
+
                     }
                 }, new Response.ErrorListener() {
             @Override

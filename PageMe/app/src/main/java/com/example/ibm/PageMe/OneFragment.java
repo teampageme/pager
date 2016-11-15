@@ -143,6 +143,7 @@ public class OneFragment extends Fragment
                     timeStamp = timeStamp.replaceAll("\"", "");
                     String message = stk.nextToken();
                     al.add("From: " + senderID + "    Msg: " + message + "      date: " + timeStamp);
+
                     singleLine.remove(singleLine.size() - 1);
                 }
                 msgResponse = al;
