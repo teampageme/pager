@@ -3,6 +3,7 @@ package com.example.ibm.PageMe;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.*;
@@ -38,13 +39,14 @@ public class compose extends AppCompatActivity {
         Intent move = getIntent();
         ourID = move.getStringExtra("ourID");
         theirID = move.getStringExtra("theirID");
+        Log.d("sending", ourID);
 
         /*our.setText(ourID); //SENDER's ID
         them.setText(theirID.toString()); //RECIEVER'S ID*/
 
         send.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String sendingMSG = "http://64.137.186.203/sendMsg.php?userNumber="+ theirID + "&from=" + ourID + "&msgToSend=" + msg.getText().toString();
+                String sendingMSG = "http://64.137.191.97/sendMsg.php?userNumber="+ theirID + "&from=" + ourID + "&msgToSend=" + msg.getText().toString();
                 send(sendingMSG);
             }
         });

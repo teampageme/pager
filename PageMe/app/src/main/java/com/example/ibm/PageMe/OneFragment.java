@@ -53,12 +53,12 @@ public class OneFragment extends Fragment
         Intent move = getActivity().getIntent();
         ourID = move.getStringExtra("ourID");
 
-        String server_url = "http://64.137.186.203/retrieve.php?pwd=Chloe1234&userNumber=" + ourID;
-
-        //should implement a way to keep refreshing msgs every minute porbably.
+        String server_url = "http://64.137.191.97/retrieve.php?pwd=Chloe1234&userNumber=386120488";
+        //Log.d("script", server_url);
+        //should implement a way to keep refreshing msgs every minute probably.
         getting = getMSG(server_url); //getMSG function executes the php script [server_url] and retrieves an arraylist that have been parsed from the csv file and stores the correctly parsed arraylist into the variable getting.
 
-        String li[]=getting.toArray(new String[getting.size()]); //converts arraylist getting into an array.
+        String li[] = getting.toArray(new String[getting.size()]); //converts arraylist getting into an array.
 
         final ListView listView = (ListView) myinflated.findViewById(R.id.list1); //mapping the java code with the xml code id for intializing listview
 
@@ -142,7 +142,7 @@ public class OneFragment extends Fragment
                     String timeStamp  = firstTime + secondTime;
                     timeStamp = timeStamp.replaceAll("\"", "");
                     String message = stk.nextToken();
-                    al.add("From: " + senderID + " Msg: " + message + " date: " + timeStamp);
+                    al.add("From: " + senderID + "    Msg: " + message + "      date: " + timeStamp);
                     singleLine.remove(singleLine.size() - 1);
                 }
                 msgResponse = al;

@@ -185,8 +185,7 @@ public class page extends AppCompatActivity {
             public void onClick(View v) {
                 if(tv.getText().toString().length() == 9)
                 {
-                    sign_up of = new sign_up();
-                    checkExisitngID = "http://64.137.186.203/testCheckForExistingID.php?id=" + tv.getText().toString();
+                    checkExisitngID = "http://64.137.191.97/interface.php?script=check_for_id&id=" + tv.getText().toString();
                     check(checkExisitngID);
                 }
                 else
@@ -234,10 +233,10 @@ public class page extends AppCompatActivity {
             Log.d("checking now: ", line);
             if(line.compareTo("EXISTS") == 0)
             {
-                Intent intent = new Intent(page.this, compose.class);
-                intent.putExtra("theirID", tv.getText());
-                intent.putExtra("ourID", ourID);
-                startActivity(intent);
+                Intent moving = new Intent(page.this, compose.class);
+                moving.putExtra("theirID", tv.getText());
+                moving.putExtra("ourID", ourID);
+                startActivity(moving);
             }
             else if(line.compareTo("DOES_NOT_EXIST") == 0)
             {

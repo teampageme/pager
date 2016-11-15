@@ -35,8 +35,8 @@ public class retrieval extends AppCompatActivity
     private void setupViewPager(ViewPager viewPager)
     {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new OneFragment(), "UNREAD");
-        adapter.addFragment(new TwoFragment(), "READ");
+        adapter.addFragment(new OneFragment(), "MSGs");
+        //adapter.addFragment(new TwoFragment(), "READ");
         viewPager.setAdapter(adapter);
     }
 

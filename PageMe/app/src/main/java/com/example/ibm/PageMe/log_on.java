@@ -39,6 +39,7 @@ public class log_on extends AppCompatActivity {
             public void onClick(View v) {
                 id = num.getText().toString();
                 password = passw.getText().toString();
+                Log.d("password", password);
 
                 try {
                     encryptedPass = AES.encrypt(password);
@@ -47,7 +48,7 @@ public class log_on extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                loginValidation = "http://64.137.186.203/testValidateLogin.php?id=" + id + "&password='" + encryptedPass + "'"; //later should send the password encrypted.
+                loginValidation = "http://64.137.191.97/interface.php?script=login&id=" + id + "&password='" + encryptedPass + "'"; //later should send the password encrypted.
                 Log.d("printing", loginValidation);
                 LogIn(loginValidation);
             }
@@ -60,7 +61,9 @@ public class log_on extends AppCompatActivity {
             }
         });
     }
-
+ /*
+    Change volley timeout request
+ */
     public void LogIn(String credentials) {
         final RequestQueue requestQueue = Volley.newRequestQueue(log_on.this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, credentials,

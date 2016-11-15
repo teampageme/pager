@@ -28,7 +28,7 @@ public class sign_up extends AppCompatActivity {
     private EditText pass, email;
     private int pin;
     private Button generate, finish, checkP, checkE;
-    private String id, password, key, checkID, encryptedPass;
+    private String id, password, myemail, checkID, encryptedPass;
     private String createUser, checkExisitngID;
     private String chkIdResponse, signUpResponse, chkIdResponse2;
 
@@ -59,7 +59,7 @@ public class sign_up extends AppCompatActivity {
                 Random rnd = new Random();
                 pin = rnd.nextInt(999999999) + 100000000;
                 checkID = String.valueOf(pin);
-                checkExisitngID = "http://64.137.186.203/testCheckForExistingID.php?id=" + checkID;
+                checkExisitngID = "http://64.137.191.97/pager/interface.php?script=check_for_id&id=" + checkID;
                 if (checkExisting(checkExisitngID) == "Error checking ID") {
                     nineBit.setText("Error checking ID");
                 }
@@ -68,7 +68,7 @@ public class sign_up extends AppCompatActivity {
                     while (checkExisting(checkExisitngID) == "EXISTS" && checkExisting(checkExisitngID) != "DOES_NOT_EXIST" && checkExisting(checkExisitngID) != "Error checking ID") {
                         pin = rnd.nextInt(999999999) + 100000000;
                         checkID = String.valueOf(pin);
-                        checkExisitngID = "http://64.137.186.203/testCheckForExistingID.php?id=" + checkID;
+                        checkExisitngID = "http://64.137.191.97/pager/interface.php?script=check_for_id&id=" + checkID;
                     }
                     nineBit.setText(checkID);
                     nworked.setText(("worked"));
@@ -111,8 +111,8 @@ public class sign_up extends AppCompatActivity {
             public void onClick(View v) {
                 if (nworked.getText() == "worked" && pworked.getText() == "worked" && eworked.getText() == "worked") {
                     id = nineBit.getText().toString();
-                    password = "'" + pass.getText().toString() + "'";
-                    key = "0"; //temporary.
+                    password = pass.getText().toString();
+                    myemail = email.getText().toString();
 
                     try {
                         encryptedPass = AES.encrypt(password);
@@ -124,7 +124,7 @@ public class sign_up extends AppCompatActivity {
                     /*
                         Should have another field for inserting email address in the database for email confirmation later on.
                      */
-                    createUser = "http://64.137.186.203/testCreateUser.php?id=" + id + "&password='" + encryptedPass + "'&key=" + key; //should include email address for confirmation
+                    createUser = "http://64.137.191.97/interface.php?script=create_user&id=" + id + "&password=" + encryptedPass + "&email=" + myemail; //should include email address for confirmation
                     //eworked.setText(signUp(createUser));
                     Log.d("script",  createUser);
                     signUp(createUser);
@@ -193,7 +193,8 @@ public class sign_up extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         signUpResponse = response;
-                        if(signUpResponse.trim().equalsIgnoreCase("SUCCESS"))
+                        //if(signUpResponse.trim().equalsIgnoreCase("SUCCESS"))
+                        if(signUpResponse.compareTo("SUCCESS") == 0)
                         {
                             Intent intent = new Intent(sign_up.this, page.class);
                             startActivity(intent);
@@ -201,6 +202,10 @@ public class sign_up extends AppCompatActivity {
                         else if(signUpResponse.trim().equalsIgnoreCase("FAILED_TO_CREATE"))
                         {
                             Toast.makeText(sign_up.this, "Failed creating user for some reason", Toast.LENGTH_LONG).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(sign_up.this, "a7a ya ali", Toast.LENGTH_LONG).show();
                         }
 
                     }
