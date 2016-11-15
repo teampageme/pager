@@ -39,7 +39,7 @@ public class compose extends AppCompatActivity {
         Intent move = getIntent();
         ourID = move.getStringExtra("ourID");
         theirID = move.getStringExtra("theirID");
-        Log.d("sending", ourID);
+        //Log.d("sending", ourID);
 
         /*our.setText(ourID); //SENDER's ID
         them.setText(theirID.toString()); //RECIEVER'S ID*/
@@ -73,19 +73,22 @@ public class compose extends AppCompatActivity {
                         our.setText(response);
                         if(response.trim().equalsIgnoreCase("SENT"))
                         {
+                        /*
                             Intent intent = new Intent(compose.this, done.class);
                             startActivity(intent);
+                        */
+                            Toast.makeText(compose.this, "MSG sent!", Toast.LENGTH_LONG).show();
                         }
                         else
                         {
-                            our.setText("MSG not sent for some reason!");
+                            Toast.makeText(compose.this, "Msg not sent for some reason!", Toast.LENGTH_LONG).show();
                         }
                     }
                 }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                our.setText("Error sending msg!");
+                Toast.makeText(compose.this, "Error sending msg!", Toast.LENGTH_LONG).show();
                 error.printStackTrace();
                 requestQueue.stop();
             }

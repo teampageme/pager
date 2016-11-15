@@ -71,7 +71,7 @@ public class sign_up extends AppCompatActivity {
                         checkExisitngID = "http://64.137.191.97/pager/interface.php?script=check_for_id&id=" + checkID;
                     }
                     nineBit.setText(checkID);
-                    nworked.setText(("worked"));
+                    //nworked.setText(("worked"));
                     //Toast.makeText(sign_up.this, "this is my Toast message!!! =)",  Toast.LENGTH_LONG).show();
                 }
             }
@@ -83,10 +83,10 @@ public class sign_up extends AppCompatActivity {
                 //checks if the password conditions are met.
                 //if valid then use TEXTVIEW "pworked" to say it worked, else then make it say try a different one.
                 if (isValidPassword(pass.getText().toString())) {
-                    pworked.setText("worked");
+                    Toast.makeText(sign_up.this, "Good Password", Toast.LENGTH_LONG).show();
                     checkP.setClickable(false); //disables checkP button after it has been pressed.
                 } else {
-                    pworked.setText("didn't worked");
+                    Toast.makeText(sign_up.this, "Choose a different password", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -97,10 +97,10 @@ public class sign_up extends AppCompatActivity {
                 //checks if the e-mail entered conditions are met.
                 //if valid then use TEXTVIEW "eworked" to say it worked, else then make it say try a different one.
                 if (isValidEmail(email.getText().toString())) {
-                    eworked.setText("worked");
+                    Toast.makeText(sign_up.this, "E-mail entered is valid", Toast.LENGTH_LONG).show();
                     checkE.setClickable(false); //disables checkE button after it has been pressed.
                 } else {
-                    eworked.setText("didn't work");
+                    Toast.makeText(sign_up.this, "Please enter your E-mail correctly", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -205,7 +205,7 @@ public class sign_up extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(sign_up.this, "a7a ya ali", Toast.LENGTH_LONG).show();
+                            Toast.makeText(sign_up.this, "Issue communicating with server", Toast.LENGTH_LONG).show();
                         }
 
                     }

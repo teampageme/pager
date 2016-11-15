@@ -53,7 +53,7 @@ public class OneFragment extends Fragment
         Intent move = getActivity().getIntent();
         ourID = move.getStringExtra("ourID");
 
-        String server_url = "http://64.137.191.97/retrieve.php?pwd=Chloe1234&userNumber=386120488";
+        String server_url = "http://64.137.191.97/retrieve.php?pwd=Chloe1234&userNumber=" + ourID;
         //Log.d("script", server_url);
         //should implement a way to keep refreshing msgs every minute probably.
         getting = getMSG(server_url); //getMSG function executes the php script [server_url] and retrieves an arraylist that have been parsed from the csv file and stores the correctly parsed arraylist into the variable getting.
@@ -82,6 +82,7 @@ public class OneFragment extends Fragment
                 Toast.makeText(getActivity(),"message #: " + (position+1), Toast.LENGTH_SHORT).show();
             }
         });
+        Toast.makeText(getActivity(), "Inbox updated!", Toast.LENGTH_LONG).show();
 
         return myinflated; //returns the updated fragment to the screen
     }

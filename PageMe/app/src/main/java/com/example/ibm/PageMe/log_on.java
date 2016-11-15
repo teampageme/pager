@@ -71,7 +71,7 @@ public class log_on extends AppCompatActivity {
 
 
     /*
-        Change volley timeout request
+        TODO: Change volley timeout request
     */
     public void LogIn(String credentials) {
         final RequestQueue requestQueue = Volley.newRequestQueue(log_on.this);
@@ -91,19 +91,19 @@ public class log_on extends AppCompatActivity {
                         }
                         else if (response.trim().equalsIgnoreCase("INVALID"))
                         {
-                            errorPassword.setText("Wrong Password or Username!");
+                            Toast.makeText(log_on.this, "Wrong userID or password!", Toast.LENGTH_LONG).show();
                         }
                         else
                         {
                             //Log.d("response ", response);
-                            errorID.setText("Please type all the required credentials");
+                            Toast.makeText(log_on.this, "Please fill all the required fields!", Toast.LENGTH_LONG).show();
                         }
 
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                errorID.setText("Error Logging in!");
+                Toast.makeText(log_on.this, "Error signing in!", Toast.LENGTH_LONG).show();
                 error.printStackTrace();
                 requestQueue.stop();
             }
