@@ -65,8 +65,8 @@ public class OneFragment extends Fragment
         /*
             TODO: have a condition to handle error when the inbox is empty.
          */
-        ArrayAdapter<String> listViewAdaptor = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, li);
-        listView.setAdapter(listViewAdaptor); //setting listview to show the content of the array li
+            ArrayAdapter<String> listViewAdaptor = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, li);
+            listView.setAdapter(listViewAdaptor); //setting listview to show the content of the array li
 
 
         /*
@@ -75,17 +75,16 @@ public class OneFragment extends Fragment
              TODO:   Redirect the user to the reply with taking the senderID to page him
         */
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) { //these are clicklisteners for each clickable textView
-                String item = listView.getItemAtPosition(position).toString();//for getting item with specfic position.
-                Log.d("OnClick", "position = " + (position + 1));
-                Log.d("OnClick", "item at position = " + item);
-                Toast.makeText(getActivity(),"message #: " + (position+1), Toast.LENGTH_SHORT).show();
-            }
-        });
-        Toast.makeText(getActivity(), "Inbox updated!", Toast.LENGTH_LONG).show();
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) { //these are clicklisteners for each clickable textView
+                    String item = listView.getItemAtPosition(position).toString();//for getting item with specfic position.
+                    Log.d("OnClick", "position = " + (position + 1));
+                    Log.d("OnClick", "item at position = " + item);
+                    Toast.makeText(getActivity(), "message #: " + (position + 1), Toast.LENGTH_SHORT).show();
+                }
+            });
+            Toast.makeText(getActivity(), "Inbox updated!", Toast.LENGTH_LONG).show();
 
         return myinflated; //returns the updated fragment to the screen
     }
@@ -126,7 +125,7 @@ public class OneFragment extends Fragment
             {
                 singleLine.add(line);
             }
-            singleLine.remove(singleLine.size() - 1); //removes new line not visually seen (could be a bug)
+            //singleLine.remove(singleLine.size() - 1); //removes new line not visually seen (could be a bug)
             if (singleLine.isEmpty())
             {
                 Toast.makeText(getActivity(),"You have no Unread msgs", Toast.LENGTH_SHORT).show();

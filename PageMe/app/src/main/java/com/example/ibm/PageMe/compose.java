@@ -41,7 +41,7 @@ public class compose extends AppCompatActivity {
         theirID = move.getStringExtra("theirID");
         //Log.d("sending", ourID);
 
-        /*our.setText(ourID); //SENDER's ID
+        /*our.setText(ourID); //SENDER's IDT
         them.setText(theirID.toString()); //RECIEVER'S ID*/
 
         send.setOnClickListener(new View.OnClickListener() {
