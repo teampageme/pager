@@ -62,6 +62,9 @@ public class OneFragment extends Fragment
 
         final ListView listView = (ListView) myinflated.findViewById(R.id.list1); //mapping the java code with the xml code id for intializing listview
 
+        /*
+            TODO: have a condition to handle error when the inbox is empty.
+         */
         ArrayAdapter<String> listViewAdaptor = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, li);
         listView.setAdapter(listViewAdaptor); //setting listview to show the content of the array li
 

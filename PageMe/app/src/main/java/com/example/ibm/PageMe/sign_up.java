@@ -1,12 +1,18 @@
 package com.example.ibm.PageMe;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.inputmethod.EditorInfo;
 import android.widget.*;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,15 +28,28 @@ import android.view.*;
 
 import com.example.ibm.pager__9_10.R;
 
+import org.w3c.dom.ls.LSResourceResolver;
+import org.xml.sax.ErrorHandler;
+import org.xml.sax.SAXException;
+
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.validation.Validator;
+
 public class sign_up extends AppCompatActivity {
     //Predeclarations
     private TextView nineBit, nworked, pworked, eworked;
     private EditText pass, email;
     private int pin;
     private Button generate, finish, checkP, checkE;
-    private String id, password, myemail, checkID, encryptedPass;
+    private String id, password, myemail, checkID, encryptedPass, person;
     private String createUser, checkExisitngID;
     private String chkIdResponse, signUpResponse, chkIdResponse2;
+
+
+    final String pinEntered = null;
+    String echo = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,16 +78,14 @@ public class sign_up extends AppCompatActivity {
                 Random rnd = new Random();
                 pin = rnd.nextInt(999999999) + 100000000;
                 checkID = String.valueOf(pin);
-                checkExisitngID = "http://64.137.191.97/pager/interface.php?script=check_for_id&id=" + checkID;
+                checkExisitngID = "http://64.137.191.97/interface.php?script=check_for_id&id=" + checkID;
                 if (checkExisting(checkExisitngID) == "Error checking ID") {
                     nineBit.setText("Error checking ID");
-                }
-                else
-                {
+                } else {
                     while (checkExisting(checkExisitngID) == "EXISTS" && checkExisting(checkExisitngID) != "DOES_NOT_EXIST" && checkExisting(checkExisitngID) != "Error checking ID") {
                         pin = rnd.nextInt(999999999) + 100000000;
                         checkID = String.valueOf(pin);
-                        checkExisitngID = "http://64.137.191.97/pager/interface.php?script=check_for_id&id=" + checkID;
+                        checkExisitngID = "http://64.137.191.97/interface.php?script=check_for_id&id=" + checkID;
                     }
                     nineBit.setText(checkID);
                     //nworked.setText(("worked"));
@@ -83,25 +100,84 @@ public class sign_up extends AppCompatActivity {
                 //checks if the password conditions are met.
                 //if valid then use TEXTVIEW "pworked" to say it worked, else then make it say try a different one.
                 if (isValidPassword(pass.getText().toString())) {
-                    Toast.makeText(sign_up.this, "Good Password", Toast.LENGTH_LONG).show();
+                    Toast.makeText(sign_up.this, "Good Password", Toast.LENGTH_SHORT).show();
                     checkP.setClickable(false); //disables checkP button after it has been pressed.
                 } else {
-                    Toast.makeText(sign_up.this, "Choose a different password", Toast.LENGTH_LONG).show();
+                    Toast.makeText(sign_up.this, "Choose a different password", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+        final int[] flag = {0};
 
         //Email Validation
         checkE.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //checks if the e-mail entered conditions are met.
                 //if valid then use TEXTVIEW "eworked" to say it worked, else then make it say try a different one.
-                if (isValidEmail(email.getText().toString())) {
-                    Toast.makeText(sign_up.this, "E-mail entered is valid", Toast.LENGTH_LONG).show();
-                    checkE.setClickable(false); //disables checkE button after it has been pressed.
-                } else {
-                    Toast.makeText(sign_up.this, "Please enter your E-mail correctly", Toast.LENGTH_LONG).show();
+
+
+                while (flag[0] == 0) {
+                    if (isValidEmail(email.getText().toString())) {
+                        Toast.makeText(sign_up.this, "E-mail entered is valid", Toast.LENGTH_SHORT).show();
+                        //checkE.setClickable(false); //disables checkE button after it has been pressed.
+                    } else {
+                        Toast.makeText(sign_up.this, "Please enter your E-mail correctly", Toast.LENGTH_SHORT).show();
+                    }
+
+                    person = email.getText().toString();
+                    final String confirm = "http://64.137.186.203/send_pin.php?email=" + person;
+                    final RequestQueue requestQueue = Volley.newRequestQueue(sign_up.this);
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, confirm,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    echo = response;
+                                    Log.d("response ", echo);
+
+                                }
+                            }, new Response.ErrorListener() {
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(sign_up.this, "Request Timeout", Toast.LENGTH_LONG).show();
+                            error.printStackTrace();
+                            requestQueue.stop();
+                        }
+                    });
+                    requestQueue.add(stringRequest);
+                    Log.d("response2 ", echo);
+                    flag[0] = 1;
                 }
+
+                final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(sign_up.this);
+
+                // set title
+                alertDialogBuilder.setTitle("Email confirmation");
+                final EditText pinNum = new EditText(sign_up.this);
+
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("Please enter 4 digit pin number to confirm.")
+                        .setCancelable(false)
+                        .setView(pinNum)
+                        .setPositiveButton("verify", new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int id) {
+                                Log.d("response3 ", echo);
+                                Log.d("response4 ", pinNum.getText().toString());
+                                if (echo.compareTo(pinNum.getText().toString()) == 0) {
+                                    Toast.makeText(sign_up.this, "Email confirmed", Toast.LENGTH_LONG).show();
+                                    checkE.setClickable(false);
+                                    dialog.cancel();
+                                } else {
+                                    Toast.makeText(sign_up.this, "wrong pin# entered", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                // show it
+                alertDialog.show();
             }
         });
 
@@ -109,26 +185,25 @@ public class sign_up extends AppCompatActivity {
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (nworked.getText() == "worked" && pworked.getText() == "worked" && eworked.getText() == "worked") {
-                    id = nineBit.getText().toString();
-                    password = pass.getText().toString();
-                    myemail = email.getText().toString();
+                id = nineBit.getText().toString();
+                password = pass.getText().toString();
+                myemail = email.getText().toString();
 
-                    try {
-                        encryptedPass = AES.encrypt(password);
-                        encryptedPass = encryptedPass.replaceAll("\n", "");
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                try {
+                    encryptedPass = AES.encrypt(password);
+                    encryptedPass = encryptedPass.replaceAll("\n", "");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                     /*
                         Should have another field for inserting email address in the database for email confirmation later on.
                      */
-                    createUser = "http://64.137.191.97/interface.php?script=create_user&id=" + id + "&password=" + encryptedPass + "&email=" + myemail; //should include email address for confirmation
-                    //eworked.setText(signUp(createUser));
-                    Log.d("script",  createUser);
-                    signUp(createUser);
-                }
+                createUser = "http://64.137.191.97/interface.php?script=create_user&id=" + id + "&password=" + encryptedPass + "&email=" + myemail; //should include email address for confirmation
+                //eworked.setText(signUp(createUser));
+                Log.d("script", createUser);
+                signUp(createUser);
+
             }
         });
 
@@ -194,18 +269,13 @@ public class sign_up extends AppCompatActivity {
                     public void onResponse(String response) {
                         signUpResponse = response;
                         //if(signUpResponse.trim().equalsIgnoreCase("SUCCESS"))
-                        if(signUpResponse.compareTo("SUCCESS") == 0)
-                        {
+                        if (signUpResponse.compareTo("SUCCESS") == 0) {
                             Intent intent = new Intent(sign_up.this, page.class);
                             startActivity(intent);
-                        }
-                        else if(signUpResponse.trim().equalsIgnoreCase("FAILED_TO_CREATE"))
-                        {
-                            Toast.makeText(sign_up.this, "Failed creating user for some reason", Toast.LENGTH_LONG).show();
-                        }
-                        else
-                        {
-                            Toast.makeText(sign_up.this, "Issue communicating with server", Toast.LENGTH_LONG).show();
+                        } else if (signUpResponse.trim().equalsIgnoreCase("FAILED_TO_CREATE")) {
+                            Toast.makeText(sign_up.this, "Failed creating user for some reason", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(sign_up.this, "Issue communicating with server", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -221,5 +291,4 @@ public class sign_up extends AppCompatActivity {
         requestQueue.add(stringRequest);
         return signUpResponse;
     }
-
 }
