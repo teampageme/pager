@@ -3,6 +3,7 @@ package com.example.ibm.PageMe;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.*;
@@ -24,23 +25,23 @@ public class compose extends AppCompatActivity {
     private Button codeBook;
     private String ourID, theirID;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compose);
 
-        msg = (EditText) findViewById(R.id.MSG);
-        send = (Button) findViewById(R.id.sending);
+        msg      = (EditText) findViewById(R.id.MSG);
+        send     = (Button) findViewById(R.id.sending);
         codeBook = (Button) findViewById(R.id.codeBook);
-        our = (TextView)findViewById(R.id.us);
-        them = (TextView)findViewById(R.id.them);
+        our      = (TextView)findViewById(R.id.us);
+        them     = (TextView)findViewById(R.id.them);
 
         Intent move = getIntent();
         ourID = move.getStringExtra("ourID");
         theirID = move.getStringExtra("theirID");
+        //Log.d("sending", ourID);
 
-        /*our.setText(ourID); //SENDER's ID
+        /*our.setText(ourID); //SENDER's IDT
         them.setText(theirID.toString()); //RECIEVER'S ID*/
 
         send.setOnClickListener(new View.OnClickListener() {
@@ -62,38 +63,43 @@ public class compose extends AppCompatActivity {
         });
 
     }
+
     public void send(String credentials) {
         final RequestQueue requestQueue = Volley.newRequestQueue(compose.this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, credentials,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if(response.compareTo("SENT") == 0)
+                        our.setText(response);
+                        if(response.trim().equalsIgnoreCase("SENT"))
                         {
+                        /*
                             Intent intent = new Intent(compose.this, done.class);
                             startActivity(intent);
+                        */
+                            Toast.makeText(compose.this, "MSG sent!", Toast.LENGTH_LONG).show();
                         }
                         else
                         {
-                            our.setText("MSG not sent for some reason!");
+                            Toast.makeText(compose.this, "Msg not sent for some reason!", Toast.LENGTH_LONG).show();
                         }
                     }
                 }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                our.setText("Error sending msg!");
+                Toast.makeText(compose.this, "Error sending msg!", Toast.LENGTH_LONG).show();
                 error.printStackTrace();
                 requestQueue.stop();
             }
         });
         requestQueue.add(stringRequest);
     }
+
     @Override
     public void onBackPressed() {
-
         Intent intent = new Intent(compose.this, page.class);
+        intent.putExtra("ourID", ourID);
         startActivity(intent);
     }
-
 }

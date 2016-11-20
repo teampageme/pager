@@ -8,7 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.ibm.PageMe.log_on">
+    android:background="#3D5E5E"
+    >
 
 
     <Button
@@ -19,6 +20,7 @@
         android:onClick="signUp"
         android:layout_marginBottom="54dp"
         android:layout_alignParentBottom="true"
+        android:background="#516E6E"
         android:layout_alignParentStart="true" />
 
     <EditText
@@ -59,16 +61,6 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="13dp" />
 
-    <Button
-        android:text="Log in"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/SingingIN"
-        android:onClick="signIn"
-        android:layout_below="@+id/errorPass"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="40dp" />
-
     <TextView
         android:text="OR"
         android:layout_width="wrap_content"
@@ -78,6 +70,18 @@
         android:layout_marginBottom="16dp"
         android:layout_above="@+id/SingingUP"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Log in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/SingingIN"
+        android:onClick="signIn"
+        android:background="#516E6E"
+
+        android:layout_below="@+id/errorPass"
+        android:layout_alignParentStart="true" />
+
 
 
 </RelativeLayout>

@@ -1,4 +1,10 @@
 <resources>
-    <string name="app_name">pager__9_10</string>
+    <string name="app_name">pagerMe</string>
     <string name="hyperlink">Forgot my password</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

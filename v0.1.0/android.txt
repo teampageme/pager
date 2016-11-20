@@ -1,4 +1,0 @@
-title=<pager>
-author=<teamxt>
-orientation=<landscape>
-orientation=<landscape>
