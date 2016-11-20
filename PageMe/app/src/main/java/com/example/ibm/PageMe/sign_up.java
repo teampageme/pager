@@ -50,23 +50,23 @@ public class sign_up extends AppCompatActivity {
     final String pinEntered = null;
     String echo = "";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
         //Declarations
-        pass = (EditText) findViewById(R.id.ps);
-        email = (EditText) findViewById(R.id.EL);
-        nineBit = (TextView) findViewById(R.id.st);
-        nworked = (TextView) findViewById(R.id.validNum);
-        pworked = (TextView) findViewById(R.id.validPass);
-        eworked = (TextView) findViewById(R.id.validEmail);
-        generate = (Button) findViewById(R.id.gen);
-        finish = (Button) findViewById(R.id.fn);
-        checkP = (Button) findViewById(R.id.chkP);
-        checkE = (Button) findViewById(R.id.chkE);
+        pass     = (EditText) findViewById(R.id.ps);
+        email    = (EditText) findViewById(R.id.EL);
+        nineBit  = (TextView) findViewById(R.id.st);
+        nworked  = (TextView) findViewById(R.id.validNum);
+        pworked  = (TextView) findViewById(R.id.validPass);
+        eworked  = (TextView) findViewById(R.id.validEmail);
+        generate = (Button)   findViewById(R.id.gen);
+        finish   = (Button)   findViewById(R.id.fn);
+        checkP   = (Button)   findViewById(R.id.chkP);
+        checkE   = (Button)   findViewById(R.id.chkE);
+        finish.setClickable(false);
 
         //Generating 9-bit #
         generate.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +76,7 @@ public class sign_up extends AppCompatActivity {
                 //if valid then use TEXTVIEW "nworked" to say it worked, else then make it say try a different one.
                 generate.setClickable(false); //disables generate button after it has been pressed.
                 Random rnd = new Random();
-                pin = rnd.nextInt(999999999) + 100000000;
+                pin = rnd.nextInt(899999999) + 100000000;
                 checkID = String.valueOf(pin);
                 checkExisitngID = "http://64.137.191.97/interface.php?script=check_for_id&id=" + checkID;
                 if (checkExisting(checkExisitngID) == "Error checking ID") {
@@ -88,7 +88,7 @@ public class sign_up extends AppCompatActivity {
                         checkExisitngID = "http://64.137.191.97/interface.php?script=check_for_id&id=" + checkID;
                     }
                     nineBit.setText(checkID);
-                    //nworked.setText(("worked"));
+                    nworked.setText(("worked"));
                     //Toast.makeText(sign_up.this, "this is my Toast message!!! =)",  Toast.LENGTH_LONG).show();
                 }
             }
@@ -98,10 +98,10 @@ public class sign_up extends AppCompatActivity {
         checkP.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //checks if the password conditions are met.
-                //if valid then use TEXTVIEW "pworked" to say it worked, else then make it say try a different one.
                 if (isValidPassword(pass.getText().toString())) {
                     Toast.makeText(sign_up.this, "Good Password", Toast.LENGTH_SHORT).show();
                     checkP.setClickable(false); //disables checkP button after it has been pressed.
+                    pworked.setText("worked");
                 } else {
                     Toast.makeText(sign_up.this, "Choose a different password", Toast.LENGTH_SHORT).show();
                 }
@@ -113,18 +113,15 @@ public class sign_up extends AppCompatActivity {
         checkE.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //checks if the e-mail entered conditions are met.
-                //if valid then use TEXTVIEW "eworked" to say it worked, else then make it say try a different one.
-
-
-                while (flag[0] == 0) {
-                    if (isValidEmail(email.getText().toString())) {
-                        Toast.makeText(sign_up.this, "E-mail entered is valid", Toast.LENGTH_SHORT).show();
-                        //checkE.setClickable(false); //disables checkE button after it has been pressed.
-                    } else {
-                        Toast.makeText(sign_up.this, "Please enter your E-mail correctly", Toast.LENGTH_SHORT).show();
-                    }
-
-                    person = email.getText().toString();
+                if (isValidEmail(email.getText().toString())) {
+                    Toast.makeText(sign_up.this, "E-mail entered is valid", Toast.LENGTH_SHORT).show();
+                    checkE.setClickable(false); //disables checkE button after it has been pressed.
+                    eworked.setText("worked");
+                } else {
+                    Toast.makeText(sign_up.this, "Please enter your E-mail correctly", Toast.LENGTH_SHORT).show();
+                }
+                // dialog for email confirmation
+                    /*person = email.getText().toString();
                     final String confirm = "http://64.137.186.203/send_pin.php?email=" + person;
                     final RequestQueue requestQueue = Volley.newRequestQueue(sign_up.this);
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, confirm,
@@ -146,10 +143,10 @@ public class sign_up extends AppCompatActivity {
                     });
                     requestQueue.add(stringRequest);
                     Log.d("response2 ", echo);
-                    flag[0] = 1;
-                }
+                    flag[0] = 1;*/
 
-                final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(sign_up.this);
+
+                /*final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(sign_up.this);
 
                 // set title
                 alertDialogBuilder.setTitle("Email confirmation");
@@ -177,7 +174,7 @@ public class sign_up extends AppCompatActivity {
                 // create alert dialog
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 // show it
-                alertDialog.show();
+                alertDialog.show();*/
             }
         });
 
@@ -196,19 +193,17 @@ public class sign_up extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                    /*
-                        Should have another field for inserting email address in the database for email confirmation later on.
-                     */
-                createUser = "http://64.137.191.97/interface.php?script=create_user&id=" + id + "&password=" + encryptedPass + "&email=" + myemail; //should include email address for confirmation
-                //eworked.setText(signUp(createUser));
-                Log.d("script", createUser);
-                signUp(createUser);
+                if (nworked.getText() == "worked" && pworked.getText() == "worked" && eworked.getText() == "worked") {
 
+                    createUser = "http://64.137.191.97/interface.php?script=create_user&id=" + id + "&password=" + encryptedPass + "&email=" + myemail; //should include email address for confirmation
+                    Log.d("script", createUser);
+                    signUp(createUser);
+                } else {
+                    Toast.makeText(sign_up.this, "Please make sure all credentials are filled correctly", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
     }
-
 
     //functions
     /*
@@ -277,10 +272,8 @@ public class sign_up extends AppCompatActivity {
                         } else {
                             Toast.makeText(sign_up.this, "Issue communicating with server", Toast.LENGTH_SHORT).show();
                         }
-
                     }
                 }, new Response.ErrorListener() {
-
             @Override
             public void onErrorResponse(VolleyError error) {
                 signUpResponse = "Error checking ID";

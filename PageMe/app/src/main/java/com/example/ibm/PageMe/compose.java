@@ -30,11 +30,11 @@ public class compose extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compose);
 
-        msg = (EditText) findViewById(R.id.MSG);
-        send = (Button) findViewById(R.id.sending);
+        msg      = (EditText) findViewById(R.id.MSG);
+        send     = (Button) findViewById(R.id.sending);
         codeBook = (Button) findViewById(R.id.codeBook);
-        our = (TextView)findViewById(R.id.us);
-        them = (TextView)findViewById(R.id.them);
+        our      = (TextView)findViewById(R.id.us);
+        them     = (TextView)findViewById(R.id.them);
 
         Intent move = getIntent();
         ourID = move.getStringExtra("ourID");
@@ -99,6 +99,7 @@ public class compose extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(compose.this, page.class);
+        intent.putExtra("ourID", ourID);
         startActivity(intent);
     }
 }

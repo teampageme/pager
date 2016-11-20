@@ -12,23 +12,29 @@ import android.widget.RadioButton;
 import com.example.ibm.pager__9_10.R;
 
 public class settings extends AppCompatActivity {
+
+    private String ourID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_settings);
 
-        Button vib = (Button) findViewById(R.id.prv);
-        Button out = (Button) findViewById(R.id.out);
-        final RadioButton osyr = (RadioButton) findViewById(R.id.shrt);
+        Button vib               = (Button) findViewById(R.id.prv);
+        Button out               = (Button) findViewById(R.id.out);
+        final RadioButton osyr   = (RadioButton) findViewById(R.id.shrt);
         final RadioButton taktka = (RadioButton) findViewById(R.id.taptap);
-        final RadioButton tawyl = (RadioButton) findViewById(R.id.lng);
-        final RadioButton saket = (RadioButton) findViewById(R.id.slnt);
+        final RadioButton tawyl  = (RadioButton) findViewById(R.id.lng);
+        final RadioButton saket  = (RadioButton) findViewById(R.id.slnt);
 
-
-        final long[] ONE_CYLCE = {100, 0, 100, 100, 0, 100, 100, 0, 100};
-        final long[] TAPS = {200, 200, 200, 200, 200, 200, 200, 200};
+        final long[] ONE_CYLCE    = {100, 0, 100, 100, 0, 100, 100, 0, 100};
+        final long[] TAPS         = {200, 200, 200, 200, 200, 200, 200, 200};
         final long[] THREE_CYCLES = {500, 500, 500, 500, 500, 500};
-        final long[] SILENT = {0};
+        final long[] SILENT       = {0};
+
+        Intent move = getIntent();
+        ourID = move.getStringExtra("ourID");
 
         vib.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -64,14 +70,13 @@ public class settings extends AppCompatActivity {
             }
 
         });
-
     }
 
     @Override
     public void onBackPressed () {
         Intent intent = new Intent(settings.this, page.class);
+        intent.putExtra("ourID", ourID);
         startActivity(intent);
     }
-
 }
 

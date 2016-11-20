@@ -1,10 +1,12 @@
 package com.example.ibm.PageMe;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +14,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import com.example.ibm.pager__9_10.R;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,17 +26,18 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
-public class OneFragment extends Fragment
-{
+public class OneFragment extends Fragment {
     private ArrayList<String> msgResponse;
     private ArrayList<String> getting;
     private String ourID;
 
-    public OneFragment() {}
+    public OneFragment() {
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,12 +45,10 @@ public class OneFragment extends Fragment
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) throws NoSuchElementException
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) throws NoSuchElementException {
         View myinflated = inflater.inflate(R.layout.activity_one_fragment, container, false);
 
-        if (android.os.Build.VERSION.SDK_INT > 9)
-        {
+        if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
@@ -62,11 +65,8 @@ public class OneFragment extends Fragment
 
         final ListView listView = (ListView) myinflated.findViewById(R.id.list1); //mapping the java code with the xml code id for intializing listview
 
-        /*
-            TODO: have a condition to handle error when the inbox is empty.
-         */
-            ArrayAdapter<String> listViewAdaptor = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, li);
-            listView.setAdapter(listViewAdaptor); //setting listview to show the content of the array li
+        ArrayAdapter<String> listViewAdaptor = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, li);
+        listView.setAdapter(listViewAdaptor); //setting listview to show the content of the array li
 
 
         /*
@@ -75,97 +75,113 @@ public class OneFragment extends Fragment
              TODO:   Redirect the user to the reply with taking the senderID to page him
         */
 
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) { //these are clicklisteners for each clickable textView
-                    String item = listView.getItemAtPosition(position).toString();//for getting item with specfic position.
-                    Log.d("OnClick", "position = " + (position + 1));
-                    Log.d("OnClick", "item at position = " + item);
-                    Toast.makeText(getActivity(), "message #: " + (position + 1), Toast.LENGTH_SHORT).show();
-                }
-            });
-            Toast.makeText(getActivity(), "Inbox updated!", Toast.LENGTH_LONG).show();
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) { //these are clicklisteners for each clickable textView
+                String item = listView.getItemAtPosition(position).toString();//for getting item with specfic position.
+                //Log.d("OnClick", "position = " + (position + 1));
+                //Log.d("OnClick", "item at position = " + item);
+                //Toast.makeText(getActivity(), "message #: " + (position + 1), Toast.LENGTH_SHORT).show();
+            }
+        });
+        Toast.makeText(getActivity(), "Inbox updated!", Toast.LENGTH_LONG).show();
+
+
+
 
         return myinflated; //returns the updated fragment to the screen
     }
 
 
-    public ArrayList<String> getMSG(String credentials)
-    {
+    public ArrayList<String> getMSG(String credentials) {
+        String line = "";
         URL url = null;
-        try
-        {
+        try {
             url = new URL(credentials); //url = phpscript: retrieve.php
-        }
-        catch (MalformedURLException e)
-        {
+        } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         HttpURLConnection urlConnection = null;
-        try
-        {
+        try {
             urlConnection = (HttpURLConnection) url.openConnection();
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        try
-        {
+        try {
             ArrayList<String> singleLine = new ArrayList(); // arraylist to recieve lines without <br /> tags
-            ArrayList<String> al         = new ArrayList(); // arraylist to receive correctly parsed lines from singleLine arraylist after using Tokenizers
-
+            ArrayList<String> al = new ArrayList(); // arraylist to receive correctly parsed lines from singleLine arraylist after using Tokenizers
+            ArrayList<String> el = new ArrayList();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
             StringBuilder response = new StringBuilder();
             //Log.d("a7a:", response.toString());
-            String line = (response.toString()).replaceAll("<br */>", "");
-            //Log.d("a7a2:", line.toString());
-            while ((line = reader.readLine()) != null)
-            {
+            line = (response.toString()).replaceAll("<br */>", "");
+            //Log.d("a7a2:", line = reader.readLine());
+            while ((line = reader.readLine()) != null) {
                 singleLine.add(line);
             }
-            //singleLine.remove(singleLine.size() - 1); //removes new line not visually seen (could be a bug)
-            if (singleLine.isEmpty())
-            {
-                Toast.makeText(getActivity(),"You have no Unread msgs", Toast.LENGTH_SHORT).show();
-            }
-            else if (!singleLine.isEmpty())
-            {
-                //Collections.reverse(singleLine); //can be use if user want to sort msgs
-                String toBeParsed;
-                while (!singleLine.isEmpty())
-                {
-                    toBeParsed = singleLine.get((singleLine.size() - 1));
-                    StringTokenizer stk = new StringTokenizer(toBeParsed, ",");
-                    stk.nextToken();
-                    String senderID   = stk.nextToken();
-                    String firstTime  = stk.nextToken();
-                    String secondTime = stk.nextToken();
-                    String timeStamp  = firstTime + secondTime;
-                    timeStamp = timeStamp.replaceAll("\"", "");
-                    String message = stk.nextToken();
-                    al.add("From: " + senderID + "    Msg: " + message + "      date: " + timeStamp);
+            if (singleLine.get(0) == "NOMSGS") {
+                //Log.d("mafysh:", "7amdy");
+                el.add("You have no msgs in your inbox");
+                msgResponse = el;
+            } else {
+                //Log.d("a7a2:", line);
+                //singleLine.remove(singleLine.size() - 1); //removes new line not visually seen (could be a bug)
+                if (singleLine.isEmpty()) {
+                    Toast.makeText(getActivity(), "You have no Unread msgs", Toast.LENGTH_SHORT).show();
+                } else if (!singleLine.isEmpty()) {
+                    //Collections.reverse(singleLine); //can be use if user want to sort msgs
+                    String toBeParsed;
+                    Log.d("linked", Arrays.toString(singleLine.toArray()));
 
-                    singleLine.remove(singleLine.size() - 1);
+                    while (!singleLine.isEmpty()) {
+                        toBeParsed = singleLine.get((singleLine.size() - 1));
+                        StringTokenizer stk = new StringTokenizer(toBeParsed, ",");
+                        stk.nextToken();
+                        String senderID = stk.nextToken();
+                        String firstTime = stk.nextToken();
+                        String secondTime = stk.nextToken();
+                        String timeStamp = firstTime + secondTime;
+                        timeStamp = timeStamp.replaceAll("\"", "");
+                        String message = stk.nextToken();
+                        al.add("From: " + senderID + "    Msg: " + message + "      date: " + timeStamp);
+                        singleLine.remove(singleLine.size() - 1);
+                    }
+                    msgResponse = al;
+                    //Log.d("msgResponse array", Arrays.toString(msgResponse.toArray()));
+                } else {
+                    Toast.makeText(getActivity(), "There has been issues retriving you msgs", Toast.LENGTH_SHORT).show();
                 }
-                msgResponse = al;
-                //Log.d("msgResponse array", Arrays.toString(msgResponse.toArray()));
             }
-            else
-            {
-                Toast.makeText(getActivity(),"There has been issues retriving you msgs", Toast.LENGTH_SHORT).show();
-            }
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally
-        {
+        } finally {
             urlConnection.disconnect();
         }
         //Log.d("msgResponse array", Arrays.toString(msgResponse.toArray()));
         return msgResponse; //return arraylist al
+    }
+    @Override
+    public void onResume() {
+
+        super.onResume();
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK){
+
+                    Intent intent = new Intent(getActivity(), page.class);
+                    startActivity(intent);
+                    return true;
+
+                }
+
+                return false;
+            }
+        });
     }
 }

@@ -36,7 +36,7 @@ public class page extends AppCompatActivity {
     private NumberPicker numPicker1, numPicker2, numPicker3, numPicker4, numPicker5, numPicker6, numPicker7, numPicker8, numPicker9;
     private TextView tv;
     private ImageButton inbox, record, settings;
-    private String ourID;
+    private String ourID, getOurID;
     private String chkIdResponse, checkExisitngID;
 
 
@@ -171,11 +171,13 @@ public class page extends AppCompatActivity {
         Intent move = getIntent();
         ourID = move.getStringExtra("ourID");
 
+
         //inbox button Listener
         inbox.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(page.this, retrieval.class);
                 intent.putExtra("ourID", ourID);
+                //Log.d("ourID", ourID);
                 startActivity(intent);
             }
         });
@@ -199,6 +201,7 @@ public class page extends AppCompatActivity {
         settings.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(page.this, settings.class);
+                intent.putExtra("ourID", ourID);
                 startActivity(intent);
             }
         });
@@ -230,7 +233,7 @@ public class page extends AppCompatActivity {
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
             String line = reader.readLine();
-            Log.d("checking now: ", line);
+            //Log.d("checking now: ", line);
             if(line.compareTo("EXISTS") == 0)
             {
                 Intent moving = new Intent(page.this, compose.class);

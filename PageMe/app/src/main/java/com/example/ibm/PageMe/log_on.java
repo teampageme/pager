@@ -29,20 +29,19 @@ public class log_on extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_on);
 
-        errorID = (TextView) findViewById(R.id.errorNum); //make sure you use that to report errors.
+        errorID       = (TextView) findViewById(R.id.errorNum); //make sure you use that to report errors.
         errorPassword = (TextView) findViewById(R.id.errorPass); //make sure you use that to report errors.
-        num = (EditText) findViewById(R.id.ninBit);
-        passw = (EditText) findViewById(R.id.ser);
-        logIn = (Button) findViewById(R.id.SingingIN);
-        create = (Button) findViewById(R.id.SingingUP);
+        num           = (EditText) findViewById(R.id.ninBit);
+        passw         = (EditText) findViewById(R.id.ser);
+        logIn         = (Button) findViewById(R.id.SingingIN);
+        create        = (Button) findViewById(R.id.SingingUP);
 
         logIn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 id = num.getText().toString();
                 password = passw.getText().toString();
                 Log.d("password", password);
-
-                double startTime = (double) System.currentTimeMillis();
+                //double startTime = (double) System.currentTimeMillis();
 
                 try {
                     encryptedPass = AES.encrypt(password);
@@ -52,12 +51,12 @@ public class log_on extends AppCompatActivity {
                 }
 
                 loginValidation = "http://64.137.191.97/interface.php?script=login&id=" + id + "&password='" + encryptedPass + "'"; //later should send the password encrypted.
-                Log.d("printing", loginValidation);
+                //Log.d("printing", loginValidation);
                 LogIn(loginValidation);
 
-                double stopTime = (double) System.currentTimeMillis();
-                double elapsedTime = stopTime - startTime;
-                Log.d("runtime", String.valueOf(elapsedTime/1000));
+                //double stopTime = (double) System.currentTimeMillis();
+                //double elapsedTime = stopTime - startTime;
+                //Log.d("runtime", String.valueOf(elapsedTime/1000));
             }
         });
 
@@ -80,8 +79,8 @@ public class log_on extends AppCompatActivity {
                     @Override
                     public void onResponse(String response)
                     {
-                        errorPassword.setText(id);
-                        Log.d("response ", response);
+                        //errorPassword.setText(id);
+                        //Log.d("response ", response);
                         if (response.trim().equalsIgnoreCase("VALID")) //if edit text is saying valid then move on else fuck it
                         {
                             Intent intent = new Intent(log_on.this, page.class);
