@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_settings"
     android:layout_width="match_parent"
@@ -8,16 +9,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.ibm.PageMe.settings">
+    android:background="#516E6E"
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="Vibration Customization"
-        android:textSize="24sp" />
+    tools:context="com.example.ibm.pager_9_10.settings">
 
     <Button
         android:id="@+id/out"
@@ -26,43 +20,52 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="22dp"
-        android:text="Sign Out" />
+        android:background="#3D5E5E"
 
-    <ToggleButton
-        android:id="@+id/toggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/out"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="124dp"
-        android:layout_marginStart="12dp"
-        android:text="ToggleButton" />
+        android:text="Sign Out" />
 
     <TextView
         android:id="@+id/notif"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/toggleButton"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="46dp"
         android:text="Push Notification"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:layout_above="@+id/toggleButton"
+        android:layout_alignParentStart="true" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#3D5E5E"
+
+        android:text="ToggleButton"
+        android:layout_above="@+id/out"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/prv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Preview"
+        android:background="#3D5E5E"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true" />
 
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/title"
-        android:layout_alignStart="@+id/toggleButton"
-        android:layout_below="@+id/title"
-        android:layout_marginTop="19dp"
         android:orientation="vertical"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:layout_alignTop="@+id/prv"
+        android:layout_alignParentStart="true">
 
         <RadioButton
             android:id="@+id/shrt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/lng"
+
             android:layout_below="@+id/lng"
             android:text="Short Vibration" />
 
@@ -71,12 +74,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/shrt"
+
             android:layout_below="@+id/shrt"
             android:text="tap tap Vibration" />
 
         <RadioButton
             android:id="@+id/lng"
             android:layout_width="wrap_content"
+
             android:layout_height="wrap_content"
             android:layout_below="@+id/title"
             android:layout_toStartOf="@+id/out"
@@ -90,16 +95,27 @@
             android:layout_alignEnd="@+id/lng"
             android:layout_alignStart="@+id/taptap"
             android:layout_below="@+id/taptap"
+
             android:text="Silent" />
     </RadioGroup>
 
-    <Button
-        android:id="@+id/prv"
+    <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Preview"
-        android:layout_toEndOf="@+id/out"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="37dp" />
+        android:text="Vibration Customization"
+        android:textSize="24sp"
+        android:layout_above="@+id/prv"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="14dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/messagebubblesicon2"
+        android:id="@+id/imageView2"
+        android:layout_above="@+id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="54dp" />
 
 </RelativeLayout>
