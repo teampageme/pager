@@ -1,0 +1,29 @@
+date: November 9, 2016
+
+meeting_type: TA
+attendance: [<mes59>,<saisaokh>, <alikafag>,<jaeheunk>,<adithyan>,]
+
+absent: [<shokoors>]
+
+excused_absences: [Sick]
+
+task_progress: 
+[ # All group members must be included here even if they haven't made any progress since the last meeting
+ 
+ {ubit: <shokoors>, progress: Client side read/unread messages},
+ 
+ {ubit: <jaeheunk>, progress: Coding the script for mass messages},
+ 
+ {ubit: <adithyan>, progress:  Made the flow better for the app and making the themes for the app},
+  
+{ubit: <alikafag>, progress: Coded the read/unread message for the app},
+  
+{ubit: <saisaokh>, progress: Working on codebook},
+  
+{ubit: <mes59>, progress: Server side encryption of login.}
+ ]
+
+issues: []
+
+Notes:  | 
+

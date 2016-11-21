@@ -1,0 +1,29 @@
+date: November 17, 2016
+
+meeting_type: group
+attendance: [<shokoors>,<saisaokh>, <alikafag>,<mes59>,<jaeheunk>,<adithyan>,]
+
+absent: [  ]
+
+excused_absences: []
+
+task_progress: 
+[ # All group members must be included here even if they haven't made any progress since the last meeting
+ 
+ {ubit: <shokoors>, progress: Worked on Beta testing, setup and apk},
+ 
+ {ubit: <jaeheunk>, progress: Improvised things for beta testing, script fro mass messgaes},
+ 
+ {ubit: <adithyan>, progress:  Made the forms, page and the flow of app, so its ready for beta testing },
+  
+{ubit: <alikafag>, progress: Corrected the errors and coded different parts to make app ready for beta testing},
+  
+{ubit: <saisaokh>, progress: Beta testing },
+  
+{ubit: <mes59>, progress: Worked on the server for solving error message issues.}
+ ]
+
+issues: []
+
+Notes:  | 
+
