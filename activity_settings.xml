@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_settings"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#516E6E"
+
+    tools:context="com.example.ibm.pager_9_10.settings">
+
+    <Button
+        android:id="@+id/out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="22dp"
+        android:background="#3D5E5E"
+
+        android:text="Sign Out" />
+
+    <TextView
+        android:id="@+id/notif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Push Notification"
+        android:textSize="24sp"
+        android:layout_above="@+id/toggleButton"
+        android:layout_alignParentStart="true" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#3D5E5E"
+
+        android:text="ToggleButton"
+        android:layout_above="@+id/out"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/prv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Preview"
+        android:background="#3D5E5E"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:layout_alignTop="@+id/prv"
+        android:layout_alignParentStart="true">
+
+        <RadioButton
+            android:id="@+id/shrt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/lng"
+            android:background="#3D5E5E"
+
+            android:layout_below="@+id/lng"
+            android:text="Short Vibration" />
+
+        <RadioButton
+            android:id="@+id/taptap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/shrt"
+            android:background="#3D5E5E"
+
+            android:layout_below="@+id/shrt"
+            android:text="tap tap Vibration" />
+
+        <RadioButton
+            android:id="@+id/lng"
+            android:layout_width="wrap_content"
+            android:background="#3D5E5E"
+
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_toStartOf="@+id/out"
+            android:layout_weight="0.79"
+            android:text="Long Vibration" />
+
+        <RadioButton
+            android:id="@+id/slnt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/lng"
+            android:layout_alignStart="@+id/taptap"
+            android:layout_below="@+id/taptap"
+            android:background="#3D5E5E"
+
+            android:text="Silent" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vibration Customization"    android:background="#3D5E5E"
+        android:textSize="24sp"
+        android:layout_above="@+id/prv"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="14dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/messagebubblesicon2"
+        android:id="@+id/imageView2"
+        android:layout_above="@+id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="54dp" />
+
+</RelativeLayout>
