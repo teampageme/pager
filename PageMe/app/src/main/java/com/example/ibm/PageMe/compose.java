@@ -1,10 +1,12 @@
 package com.example.ibm.PageMe;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.*;
 
@@ -20,8 +22,8 @@ import com.example.ibm.pager__9_10.R;
 
 public class compose extends AppCompatActivity {
     private EditText msg;
-    private TextView our, them;
-    private Button send;
+    private TextView our, them, ID;
+    private ImageButton send;
     private Button codeBook;
     private String ourID, theirID;
 
@@ -31,36 +33,46 @@ public class compose extends AppCompatActivity {
         setContentView(R.layout.activity_compose);
 
         msg      = (EditText) findViewById(R.id.MSG);
-        send     = (Button) findViewById(R.id.sending);
+        send     = (ImageButton) findViewById(R.id.sending);
         codeBook = (Button) findViewById(R.id.codeBook);
         our      = (TextView)findViewById(R.id.us);
         them     = (TextView)findViewById(R.id.them);
+        ID       = (TextView)findViewById(R.id.UID);
 
         Intent move = getIntent();
         ourID = move.getStringExtra("ourID");
         theirID = move.getStringExtra("theirID");
         //Log.d("sending", ourID);
 
+        final InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        ID.setText("Paging: " + ourID);
         /*our.setText(ourID); //SENDER's IDT
         them.setText(theirID.toString()); //RECIEVER'S ID*/
 
         send.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String sendingMSG = "http://64.137.191.97/sendMsg.php?userNumber="+ theirID + "&from=" + ourID + "&msgToSend=" + msg.getText().toString();
+                String sendingMSG = "https://henrietta.ml/sendMsg.php?userNumber="+ theirID + "&from=" + ourID + "&msgToSend=" + msg.getText().toString();
                 send(sendingMSG);
+                imm.hideSoftInputFromWindow(compose.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
             }
         });
 
+/*
         codeBook.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //should redirect user to the his codebook activityu, using intents. To be implemented later.
-                /*
+                */
+/*
                 Intent intent = new Intent(compose.this, codebook.class);
                 startActivity(intent);
-                */
+                *//*
+
 
             }
         });
+*/
 
     }
 

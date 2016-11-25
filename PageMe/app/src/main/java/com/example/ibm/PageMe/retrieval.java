@@ -65,7 +65,7 @@ public class retrieval extends AppCompatActivity
         ourID = move.getStringExtra("ourID");
 
         String eve = ourID;
-        String server_url = "http://64.137.191.97/retrieve.php?pwd=Chloe1234&userNumber=" + eve;
+        String server_url = "https://henrietta.ml/retrieve.php?pwd=Chloe1234&userNumber=" + eve;
         //Log.d("script", server_url);
         //should implement a way to keep refreshing msgs every minute probably.
         getMSG(server_url); //getMSG function executes the php script [server_url] and retrieves an arraylist that have been parsed from the csv file and stores the correctly parsed arraylist into the variable getting.

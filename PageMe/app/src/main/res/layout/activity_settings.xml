@@ -24,25 +24,6 @@
 
         android:text="Sign Out" />
 
-    <TextView
-        android:id="@+id/notif"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Push Notification"
-        android:textSize="24sp"
-        android:layout_above="@+id/toggleButton"
-        android:layout_alignParentStart="true" />
-
-    <ToggleButton
-        android:id="@+id/toggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#3D5E5E"
-
-        android:text="ToggleButton"
-        android:layout_above="@+id/out"
-        android:layout_alignParentStart="true" />
-
     <Button
         android:id="@+id/prv"
         android:layout_width="wrap_content"
@@ -52,13 +33,33 @@
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/UID"
+        android:textSize="24sp"
+        android:layout_above="@+id/title"
+        android:layout_marginBottom="36dp"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="PageMe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:textStyle="normal|bold"
+        android:textSize="18sp"
+        android:layout_below="@+id/imageView2"
+        android:layout_centerHorizontal="true" />
+
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:weightSum="1"
-        android:layout_alignTop="@+id/prv"
-        android:layout_alignParentStart="true">
+        android:layout_below="@+id/UID"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp">
 
         <RadioButton
             android:id="@+id/shrt"
@@ -105,17 +106,37 @@
         android:layout_height="wrap_content"
         android:text="Vibration Customization"
         android:textSize="24sp"
+        android:layout_marginBottom="46dp"
         android:layout_above="@+id/prv"
+        android:layout_alignParentStart="true" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#3D5E5E"
+
+        android:text="ToggleButton"
+        android:layout_marginBottom="34dp"
+        android:layout_above="@+id/out"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/notif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Push Notification"
+        android:textSize="24sp"
+        android:layout_above="@+id/toggleButton"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="14dp" />
+        android:layout_marginBottom="10dp" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/messagebubblesicon2"
+        app:srcCompat="@drawable/ic_launcher"
         android:id="@+id/imageView2"
-        android:layout_above="@+id/title"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="54dp" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

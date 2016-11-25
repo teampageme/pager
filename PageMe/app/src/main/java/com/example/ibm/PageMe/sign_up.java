@@ -78,14 +78,14 @@ public class sign_up extends AppCompatActivity {
                 Random rnd = new Random();
                 pin = rnd.nextInt(899999999) + 100000000;
                 checkID = String.valueOf(pin);
-                checkExisitngID = "http://64.137.191.97/interface.php?script=check_for_id&id=" + checkID;
+                checkExisitngID = "https://henrietta.ml/interface.php?script=check_for_id&id=" + checkID;
                 if (checkExisting(checkExisitngID) == "Error checking ID") {
                     nineBit.setText("Error checking ID");
                 } else {
                     while (checkExisting(checkExisitngID) == "EXISTS" && checkExisting(checkExisitngID) != "DOES_NOT_EXIST" && checkExisting(checkExisitngID) != "Error checking ID") {
                         pin = rnd.nextInt(999999999) + 100000000;
                         checkID = String.valueOf(pin);
-                        checkExisitngID = "http://64.137.191.97/interface.php?script=check_for_id&id=" + checkID;
+                        checkExisitngID = "https://henrietta.ml/interface.php?script=check_for_id&id=" + checkID;
                     }
                     nineBit.setText(checkID);
                     nworked.setText(("worked"));
@@ -107,7 +107,6 @@ public class sign_up extends AppCompatActivity {
                 }
             }
         });
-        final int[] flag = {0};
 
         //Email Validation
         checkE.setOnClickListener(new View.OnClickListener() {
@@ -195,7 +194,7 @@ public class sign_up extends AppCompatActivity {
 
                 if (nworked.getText() == "worked" && pworked.getText() == "worked" && eworked.getText() == "worked") {
 
-                    createUser = "http://64.137.191.97/interface.php?script=create_user&id=" + id + "&password=" + encryptedPass + "&email=" + myemail; //should include email address for confirmation
+                    createUser = "https://henrietta.ml/interface.php?script=create_user&id=" + id + "&password=" + encryptedPass + "&email=" + myemail; //should include email address for confirmation
                     Log.d("script", createUser);
                     signUp(createUser);
                 } else {

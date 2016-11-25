@@ -187,7 +187,7 @@ public class page extends AppCompatActivity {
             public void onClick(View v) {
                 if(tv.getText().toString().length() == 9)
                 {
-                    checkExisitngID = "http://64.137.191.97/interface.php?script=check_for_id&id=" + tv.getText().toString();
+                    checkExisitngID = "https://henrietta.ml/interface.php?script=check_for_id&id=" + tv.getText().toString();
                     check(checkExisitngID);
                 }
                 else

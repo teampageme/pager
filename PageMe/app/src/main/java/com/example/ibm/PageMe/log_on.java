@@ -40,7 +40,7 @@ public class log_on extends AppCompatActivity {
             public void onClick(View v) {
                 id = num.getText().toString();
                 password = passw.getText().toString();
-                Log.d("password", password);
+                //Log.d("password", password);
                 //double startTime = (double) System.currentTimeMillis();
 
                 try {
@@ -50,7 +50,7 @@ public class log_on extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                loginValidation = "http://64.137.191.97/interface.php?script=login&id=" + id + "&password='" + encryptedPass + "'"; //later should send the password encrypted.
+                loginValidation = "https://henrietta.ml/interface.php?script=login&id=" + id + "&password='" + encryptedPass + "'"; //later should send the password encrypted.
                 //Log.d("printing", loginValidation);
                 LogIn(loginValidation);
 
