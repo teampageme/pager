@@ -184,7 +184,6 @@ public class sign_up extends AppCompatActivity {
                 id = nineBit.getText().toString();
                 password = pass.getText().toString();
                 myemail = email.getText().toString();
-
                 try {
                     encryptedPass = AES.encrypt(password);
                     encryptedPass = encryptedPass.replaceAll("\n", "");
@@ -193,7 +192,6 @@ public class sign_up extends AppCompatActivity {
                 }
 
                 if (nworked.getText() == "worked" && pworked.getText() == "worked" && eworked.getText() == "worked") {
-
                     createUser = "https://henrietta.ml/interface.php?script=create_user&id=" + id + "&password=" + encryptedPass + "&email=" + myemail; //should include email address for confirmation
                     Log.d("script", createUser);
                     signUp(createUser);

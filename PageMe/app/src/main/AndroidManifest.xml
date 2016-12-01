@@ -41,8 +41,10 @@
         <activity
             android:name="com.example.ibm.PageMe.settings"
             android:screenOrientation="portrait" />
-        <activity android:name="com.example.ibm.PageMe.retrieval"
-            android:screenOrientation="landscape"/>
+        <activity
+            android:name="com.example.ibm.PageMe.retrieval"
+            android:screenOrientation="landscape" />
+        <activity android:name="com.example.ibm.PageMe.replying"></activity>
     </application>
 
 </manifest>
