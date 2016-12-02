@@ -50,8 +50,8 @@ public class log_on extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                loginValidation = "https://henrietta.ml/interface.php?script=login&id=" + id + "&password='" + encryptedPass + "'"; //later should send the password encrypted.
-                //Log.d("printing", loginValidation);
+                loginValidation = "https://henrietta.ml/interface.php?script=login&id=" + id + "&password=" + encryptedPass; //later should send the password encrypted.
+                Log.d("printing", loginValidation);
                 LogIn(loginValidation);
 
                 //double stopTime = (double) System.currentTimeMillis();

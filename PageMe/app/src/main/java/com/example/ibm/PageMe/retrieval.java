@@ -75,39 +75,33 @@ public class retrieval extends AppCompatActivity {
             List<String> list = Arrays.asList(ali.split("\n"));
             Log.d("list", Arrays.toString(list.toArray()));
             Log.d("list", String.valueOf(list.size()));
-            //if (!list.isEmpty() && list != null && list.get(0) != "") {
-                String li[] = list.toArray(new String[list.size()]);
-                //Log.d("array", li[0]);
-                if (li[0] != null) {
-                    final ListView listView = (ListView) findViewById(R.id.list1);
-                    ArrayAdapter<String> listViewAdaptor = new ArrayAdapter<String>(retrieval.this, android.R.layout.simple_expandable_list_item_1, li);
-                    listView.setAdapter(listViewAdaptor); //setting listview to show the content of the array li
-                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) { //these are clicklisteners for each clickable textView
-                            String item = listView.getItemAtPosition(position).toString();//for getting item with specfic position.
-                            Log.d("OnClick", "position = " + (position + 1));
-                            Log.d("OnClick", "item at position = " + item);
-                            StringTokenizer tokn = new StringTokenizer(item, " ");
-                            tokn.nextToken();
-                            String sender = tokn.nextToken();
-                            Log.d("SenderID", sender);
-                            Intent mv = new Intent(retrieval.this, replying.class);
-                            mv.putExtra("ourID", ourID);
-                            mv.putExtra("theirID", sender);
-                            startActivity(mv);
+            String li[] = list.toArray(new String[list.size()]);
+            //Log.d("array", li[0]);
+            if (li[0] != null) {
+                final ListView listView = (ListView) findViewById(R.id.list1);
+                ArrayAdapter<String> listViewAdaptor = new ArrayAdapter<String>(retrieval.this, android.R.layout.simple_expandable_list_item_1, li);
+                listView.setAdapter(listViewAdaptor); //setting listview to show the content of the array li
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) { //these are clicklisteners for each clickable textView
+                        String item = listView.getItemAtPosition(position).toString();//for getting item with specfic position.
+                        Log.d("OnClick", "position = " + (position + 1));
+                        Log.d("OnClick", "item at position = " + item);
+                        StringTokenizer tokn = new StringTokenizer(item, " ");
+                        tokn.nextToken();
+                        String sender = tokn.nextToken();
+                        Log.d("SenderID", sender);
+                        Intent mv = new Intent(retrieval.this, replying.class);
+                        mv.putExtra("ourID", ourID);
+                        mv.putExtra("theirID", sender);
+                        startActivity(mv);
 
-                            //Toast.makeText(getActivity(), "message #: " + (position + 1), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity(), "message #: " + (position + 1), Toast.LENGTH_SHORT).show();
 
-                        }
-                    });
-                    Toast.makeText(retrieval.this, "Inbox updated!", Toast.LENGTH_LONG).show();
-                }
-            //}
-            //else
-            //{
-            //    Toast.makeText(retrieval.this, "You have no MSGS", Toast.LENGTH_LONG).show();
-            //}
+                    }
+                });
+                Toast.makeText(retrieval.this, "Inbox updated!", Toast.LENGTH_LONG).show();
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
