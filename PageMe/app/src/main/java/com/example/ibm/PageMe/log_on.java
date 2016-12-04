@@ -84,7 +84,7 @@ public class log_on extends AppCompatActivity {
                         if (response.trim().equalsIgnoreCase("VALID")) //if edit text is saying valid then move on else fuck it
                         {
                             Intent intent = new Intent(log_on.this, page.class);
-                            intent.putExtra("ourID", id);
+                                    intent.putExtra("ourID", id);
                             startActivity(intent);
                             //Log.d("response ", "fuck yea");
                         }

@@ -32,12 +32,12 @@ public class compose extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compose);
 
-        msg      = (EditText) findViewById(R.id.MSG);
+        msg      = (EditText)    findViewById(R.id.MSG);
         send     = (ImageButton) findViewById(R.id.sending);
-        codeBook = (Button) findViewById(R.id.codeBook);
-        our      = (TextView)findViewById(R.id.us);
-        them     = (TextView)findViewById(R.id.them);
-        ID       = (TextView)findViewById(R.id.UID);
+        codeBook = (Button)      findViewById(R.id.codeBook);
+        our      = (TextView)    findViewById(R.id.us);
+        them     = (TextView)    findViewById(R.id.them);
+        ID       = (TextView)    findViewById(R.id.UID);
 
         Intent move = getIntent();
         ourID = move.getStringExtra("ourID");
@@ -55,7 +55,6 @@ public class compose extends AppCompatActivity {
                 String sendingMSG = "https://henrietta.ml/sendMsg.php?userNumber="+ theirID + "&from=" + ourID + "&msgToSend=" + msg.getText().toString();
                 send(sendingMSG);
                 imm.hideSoftInputFromWindow(compose.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-
             }
         });
 

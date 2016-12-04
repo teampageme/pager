@@ -46,7 +46,7 @@ public class sign_up extends AppCompatActivity {
     private String createUser, checkExisitngID;
     private String chkIdResponse, signUpResponse, chkIdResponse2;
 
-
+    //used for e-mail confirmation
     final String pinEntered = null;
     String echo = "";
 
@@ -210,9 +210,7 @@ public class sign_up extends AppCompatActivity {
     public boolean isValidPassword(final String password) {
         Pattern pattern;
         Matcher matcher;
-
         final String PASSWORD_PATTERN = "^.{4,20}$"; //pass between 4 and 20 chars, with no other restrictions.
-
         pattern = Pattern.compile(PASSWORD_PATTERN);
         matcher = pattern.matcher(password);
 
@@ -263,6 +261,7 @@ public class sign_up extends AppCompatActivity {
                         //if(signUpResponse.trim().equalsIgnoreCase("SUCCESS"))
                         if (signUpResponse.compareTo("SUCCESS") == 0) {
                             Intent intent = new Intent(sign_up.this, page.class);
+                            intent.putExtra("ourID", id);
                             startActivity(intent);
                         } else if (signUpResponse.trim().equalsIgnoreCase("FAILED_TO_CREATE")) {
                             Toast.makeText(sign_up.this, "Failed creating user for some reason", Toast.LENGTH_SHORT).show();
