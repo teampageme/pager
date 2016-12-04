@@ -27,6 +27,6 @@ In the messages activity, all messages are retrieved from the server and display
 Pager settings can be accessed by pressing the gear icon on the main page.
 
 #	Development
-•	UI is made with XML in Android Studio
-•	Backend made with LNMP (Linux + Nginx + Maria DB + PHP 7) stack.
-•	Future works may include features like (needs to be filled later)
+* 	UI is made with XML in Android Studio
+* 	Backend made with LNMP (Linux + Nginx + Maria DB + PHP 7) stack.
+* 	Future works may include features like (needs to be filled later)
