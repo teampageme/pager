@@ -11,13 +11,22 @@
     android:background="#516E6E"
     android:id="@+id/relv">
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id = "@+id/evy"
-    android:visibility="invisible"/>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/list1" />
+        android:id="@+id/list1"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/evy" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id = "@+id/evy"
+        android:text="Messages"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:lineSpacingExtra="12sp" />
 </RelativeLayout>

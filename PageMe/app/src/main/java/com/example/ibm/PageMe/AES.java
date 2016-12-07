@@ -1,12 +1,5 @@
 package com.example.ibm.PageMe;
 
-import android.util.Base64;
-import java.security.Key;
-import java.security.MessageDigest;
-import java.util.Arrays;
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
-import android.util.Base64;
 import java.security.Key;
 import java.security.MessageDigest;
 import java.util.Arrays;

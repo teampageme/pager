@@ -1,40 +1,20 @@
 package com.example.ibm.PageMe;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.inputmethod.EditorInfo;
 import android.widget.*;
-
-import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import android.view.*;
-
-import com.example.ibm.pager__9_10.R;
-
-import org.w3c.dom.ls.LSResourceResolver;
-import org.xml.sax.ErrorHandler;
-import org.xml.sax.SAXException;
-
-import javax.xml.transform.Result;
-import javax.xml.transform.Source;
-import javax.xml.validation.Validator;
 
 public class sign_up extends AppCompatActivity {
     //Predeclarations
@@ -46,7 +26,7 @@ public class sign_up extends AppCompatActivity {
     private String createUser, checkExisitngID;
     private String chkIdResponse, signUpResponse, chkIdResponse2;
 
-
+    //used for e-mail confirmation
     final String pinEntered = null;
     String echo = "";
 
@@ -78,14 +58,14 @@ public class sign_up extends AppCompatActivity {
                 Random rnd = new Random();
                 pin = rnd.nextInt(899999999) + 100000000;
                 checkID = String.valueOf(pin);
-                checkExisitngID = "http://64.137.191.97/interface.php?script=check_for_id&id=" + checkID;
+                checkExisitngID = "https://henrietta.ml/interface.php?script=check_for_id&id=" + checkID;
                 if (checkExisting(checkExisitngID) == "Error checking ID") {
                     nineBit.setText("Error checking ID");
                 } else {
                     while (checkExisting(checkExisitngID) == "EXISTS" && checkExisting(checkExisitngID) != "DOES_NOT_EXIST" && checkExisting(checkExisitngID) != "Error checking ID") {
                         pin = rnd.nextInt(999999999) + 100000000;
                         checkID = String.valueOf(pin);
-                        checkExisitngID = "http://64.137.191.97/interface.php?script=check_for_id&id=" + checkID;
+                        checkExisitngID = "https://henrietta.ml/interface.php?script=check_for_id&id=" + checkID;
                     }
                     nineBit.setText(checkID);
                     nworked.setText(("worked"));
@@ -107,7 +87,6 @@ public class sign_up extends AppCompatActivity {
                 }
             }
         });
-        final int[] flag = {0};
 
         //Email Validation
         checkE.setOnClickListener(new View.OnClickListener() {
@@ -185,7 +164,6 @@ public class sign_up extends AppCompatActivity {
                 id = nineBit.getText().toString();
                 password = pass.getText().toString();
                 myemail = email.getText().toString();
-
                 try {
                     encryptedPass = AES.encrypt(password);
                     encryptedPass = encryptedPass.replaceAll("\n", "");
@@ -194,8 +172,7 @@ public class sign_up extends AppCompatActivity {
                 }
 
                 if (nworked.getText() == "worked" && pworked.getText() == "worked" && eworked.getText() == "worked") {
-
-                    createUser = "http://64.137.191.97/interface.php?script=create_user&id=" + id + "&password=" + encryptedPass + "&email=" + myemail; //should include email address for confirmation
+                    createUser = "https://henrietta.ml/interface.php?script=create_user&id=" + id + "&password=" + encryptedPass + "&email=" + myemail; //should include email address for confirmation
                     Log.d("script", createUser);
                     signUp(createUser);
                 } else {
@@ -213,9 +190,7 @@ public class sign_up extends AppCompatActivity {
     public boolean isValidPassword(final String password) {
         Pattern pattern;
         Matcher matcher;
-
         final String PASSWORD_PATTERN = "^.{4,20}$"; //pass between 4 and 20 chars, with no other restrictions.
-
         pattern = Pattern.compile(PASSWORD_PATTERN);
         matcher = pattern.matcher(password);
 
@@ -266,6 +241,7 @@ public class sign_up extends AppCompatActivity {
                         //if(signUpResponse.trim().equalsIgnoreCase("SUCCESS"))
                         if (signUpResponse.compareTo("SUCCESS") == 0) {
                             Intent intent = new Intent(sign_up.this, page.class);
+                            intent.putExtra("ourID", id);
                             startActivity(intent);
                         } else if (signUpResponse.trim().equalsIgnoreCase("FAILED_TO_CREATE")) {
                             Toast.makeText(sign_up.this, "Failed creating user for some reason", Toast.LENGTH_SHORT).show();

@@ -8,8 +8,7 @@ import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
-
-import com.example.ibm.pager__9_10.R;
+import android.widget.TextView;
 
 public class settings extends AppCompatActivity {
 
@@ -23,6 +22,7 @@ public class settings extends AppCompatActivity {
 
         Button vib               = (Button) findViewById(R.id.prv);
         Button out               = (Button) findViewById(R.id.out);
+        TextView ID              = (TextView)findViewById(R.id.UID);
         final RadioButton osyr   = (RadioButton) findViewById(R.id.shrt);
         final RadioButton taktka = (RadioButton) findViewById(R.id.taptap);
         final RadioButton tawyl  = (RadioButton) findViewById(R.id.lng);
@@ -35,6 +35,8 @@ public class settings extends AppCompatActivity {
 
         Intent move = getIntent();
         ourID = move.getStringExtra("ourID");
+
+        ID.setText("ID: " + ourID);
 
         vib.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

@@ -1,6 +1,5 @@
 package com.example.ibm.PageMe;
 
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,14 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.*;
 import android.content.*;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.ibm.pager__9_10.R;
 
 public class log_on extends AppCompatActivity {
     private TextView errorID, errorPassword;
@@ -40,7 +37,7 @@ public class log_on extends AppCompatActivity {
             public void onClick(View v) {
                 id = num.getText().toString();
                 password = passw.getText().toString();
-                Log.d("password", password);
+                //Log.d("password", password);
                 //double startTime = (double) System.currentTimeMillis();
 
                 try {
@@ -50,8 +47,8 @@ public class log_on extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                loginValidation = "http://64.137.191.97/interface.php?script=login&id=" + id + "&password='" + encryptedPass + "'"; //later should send the password encrypted.
-                //Log.d("printing", loginValidation);
+                loginValidation = "https://henrietta.ml/interface.php?script=login&id=" + id + "&password=" + encryptedPass; //later should send the password encrypted.
+                Log.d("printing", loginValidation);
                 LogIn(loginValidation);
 
                 //double stopTime = (double) System.currentTimeMillis();
@@ -84,7 +81,7 @@ public class log_on extends AppCompatActivity {
                         if (response.trim().equalsIgnoreCase("VALID")) //if edit text is saying valid then move on else fuck it
                         {
                             Intent intent = new Intent(log_on.this, page.class);
-                            intent.putExtra("ourID", id);
+                                    intent.putExtra("ourID", id);
                             startActivity(intent);
                             //Log.d("response ", "fuck yea");
                         }

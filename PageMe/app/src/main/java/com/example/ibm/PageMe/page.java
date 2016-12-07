@@ -1,14 +1,11 @@
 package com.example.ibm.PageMe;
 
 import android.os.StrictMode;
-import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.*;
 import android.widget.*;
 import android.content.*;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,15 +15,7 @@ import java.lang.Math;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.ibm.pager__9_10.R;
 
 //The UI for this activity will be polished later.
 
@@ -187,7 +176,7 @@ public class page extends AppCompatActivity {
             public void onClick(View v) {
                 if(tv.getText().toString().length() == 9)
                 {
-                    checkExisitngID = "http://64.137.191.97/interface.php?script=check_for_id&id=" + tv.getText().toString();
+                    checkExisitngID = "https://henrietta.ml/interface.php?script=check_for_id&id=" + tv.getText().toString();
                     check(checkExisitngID);
                 }
                 else

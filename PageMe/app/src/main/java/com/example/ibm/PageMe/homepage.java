@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.content.*;
 import android.view.*;
 import android.widget.*;
-import com.example.ibm.pager__9_10.R;
 
 public class homepage extends AppCompatActivity
 {
