@@ -1,7 +1,7 @@
 # PageMe
 * 	Group Members: Adithya Narayanan, Ali Kafagy, Jaeheun Kim, Mitchell Schmidt, Sai Sao Kham, Syed Abdul Shukoor
 *   Url: (App needs to be deployed to the Google store)
-* 	License: (Will be filled in later)
+* 	License: MIT License.
 
 #	Description
 
