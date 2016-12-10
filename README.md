@@ -1,6 +1,6 @@
 # PageMe
 * 	Group Members: Adithya Narayanan, Ali Kafagy, Jaeheun Kim, Mitchell Schmidt, Sai Sao Kham, Syed Abdul Shukoor
-*   Url: (App needs to be deployed to the Google store)
+*   Url: https://drive.google.com/file/d/0BzbExCHpAf_GbG1ROS1yM05kUEk/view?usp=sharing
 * 	License: MIT License.
 
 #	Description
@@ -29,4 +29,9 @@ Pager settings can be accessed by pressing the gear icon on the main page.
 #	Development
 * 	UI is made with XML in Android Studio
 * 	Backend made with LNMP (Linux + Nginx + Maria DB + PHP 7) stack.
-* 	Future works may include features like (needs to be filled later)
+* 	Future works may include features like:
+        Location Range Based Paging
+        Broadcast Lists
+        Sharable Codebook
+        Single button notify all users
+        
