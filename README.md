@@ -30,8 +30,9 @@ Pager settings can be accessed by pressing the gear icon on the main page.
 * 	UI is made with XML in Android Studio
 * 	Backend made with LNMP (Linux + Nginx + Maria DB + PHP 7) stack.
 * 	Future works may include features like:
-                ** Location Range Based Paging.
-                ** Broadcast Lists.
-                ** Sharable Codebooks.
-                ** Single button to notify all users.
+
+                - Location Range Based Paging.
+                - Broadcast Lists.
+                - Sharable Codebooks.
+                - Single button to notify all users.
         
