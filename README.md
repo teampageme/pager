@@ -1,6 +1,7 @@
 # PageMe
 * 	Group Members: Adithya Narayanan, Ali Kafagy, Jaeheun Kim, Mitchell Schmidt, Sai Sao Kham, Syed Abdul Shukoor
-*   Url: https://drive.google.com/file/d/0BzbExCHpAf_GbG1ROS1yM05kUEk/view?usp=sharing
+*   Project Webpage: https://teampageme.github.io/pager/
+*   Download Link: https://drive.google.com/file/d/0BzbExCHpAf_GbG1ROS1yM05kUEk/view?usp=sharing
 * 	License: MIT License.
 
 #	Description
